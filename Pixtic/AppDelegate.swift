@@ -7,18 +7,45 @@
 //
 
 import UIKit
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-
+    var images: [Photo]!
+    
+    class func instance() -> AppDelegate {
+        return UIApplication.shared.delegate as! AppDelegate
+    }
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        FIRApp.configure()
+        
+        getWallpapersFromDatabase()
+
         return true
     }
 
+    func getWallpapersFromDatabase() {
+        let ref = FIRDatabase.database().reference()
+        
+        ref.child("Wallpaper").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            if let wallpapers = snapshot.value as? [String : AnyObject] {
+                self.images = [Photo]()
+                for (id,url) in wallpapers {
+                    let photo = Photo()
+                    photo.photoID = id
+                    photo.imageURL = url as! String
+                    self.images.append(photo)
+                }
+                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
+            }
+        })
+        ref.removeAllObservers()
+    }
+    
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.

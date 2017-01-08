@@ -1,0 +1,6 @@
+framework module Pods_Pixtic {
+  umbrella header "Pods-Pixtic-umbrella.h"
+
+  export *
+  module * { export * }
+}
