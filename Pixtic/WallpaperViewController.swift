@@ -27,12 +27,12 @@ class WallpaperViewController: UIViewController {
         self.savedView.layer.masksToBounds = true
         
         UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
-        UIView.animate(withDuration: 0.5) {
+        UIView.animate(withDuration: 0.3) {
             self.savedView.alpha = 0.90
         }
         let when = DispatchTime.now() + 2
         DispatchQueue.main.asyncAfter(deadline: when){
-            UIView.animate(withDuration: 0.5, animations: { 
+            UIView.animate(withDuration: 0.3, animations: {
                 self.savedView.alpha = 0
             })
         }
