@@ -19,5 +19,9 @@ class WallpaperViewController: UIViewController {
         super.viewDidLoad()
     }
 
+    @IBAction func savePressed(_ sender: Any) {
+        UIImageWriteToSavedPhotosAlbum(imageView.image!, nil, nil, nil)
+    }
+    
 }
 

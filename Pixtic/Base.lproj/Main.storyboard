@@ -24,12 +24,35 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ljp-3F-EIW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
+                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPE-kg-cjC">
+                                <rect key="frame" x="0.0" y="597" width="375" height="70"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DM-k3-Obp">
+                                        <rect key="frame" x="170" y="20" width="34" height="30"/>
+                                        <state key="normal" title="Save">
+                                            <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="savePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="IMI-C4-Zg0"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="70" id="3UK-Yt-8v6"/>
+                                    <constraint firstItem="1DM-k3-Obp" firstAttribute="centerX" secondItem="BPE-kg-cjC" secondAttribute="centerX" id="MbN-He-Q9Y"/>
+                                    <constraint firstItem="1DM-k3-Obp" firstAttribute="centerY" secondItem="BPE-kg-cjC" secondAttribute="centerY" id="gwk-hi-T3A"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="8Eh-x0-LD6"/>
                             <constraint firstAttribute="trailing" secondItem="Ljp-3F-EIW" secondAttribute="trailing" id="GEy-5t-Kq5"/>
+                            <constraint firstItem="BPE-kg-cjC" firstAttribute="top" secondItem="Ljp-3F-EIW" secondAttribute="bottom" constant="-70" id="Xbh-pZ-0CJ"/>
+                            <constraint firstAttribute="trailing" secondItem="BPE-kg-cjC" secondAttribute="trailing" id="YiJ-Mg-yWg"/>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kL5-H2-ryp"/>
+                            <constraint firstItem="BPE-kg-cjC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="klZ-ti-cAt"/>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xhd-u9-eUn"/>
                         </constraints>
                     </view>
@@ -39,7 +62,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="70" y="81"/>
+            <point key="canvasLocation" x="69.599999999999994" y="80.50974512743629"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="3hA-LP-YA2">
