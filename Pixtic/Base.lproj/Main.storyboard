@@ -24,7 +24,7 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ljp-3F-EIW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <view alpha="0.65000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPE-kg-cjC">
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BPE-kg-cjC">
                                 <rect key="frame" x="0.0" y="597" width="375" height="70"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1DM-k3-Obp">
@@ -57,6 +57,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="buttonsView" destination="BPE-kg-cjC" id="EWT-wX-N5E"/>
                         <outlet property="imageView" destination="Ljp-3F-EIW" id="6K2-VH-6hZ"/>
                     </connections>
                 </viewController>

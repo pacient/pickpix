@@ -11,6 +11,7 @@ import Kingfisher
 
 class WallpaperViewController: UIViewController {
     
+    @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var imageView: UIImageView!
     
     var photo: Photo!

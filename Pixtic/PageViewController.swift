@@ -30,8 +30,11 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         firstViewController.photo = AppDelegate.instance().images.first!
         let url = URL(string: AppDelegate.instance().images.first!.imageURL!)!
         let resource = ImageResource(downloadURL: url, cacheKey: AppDelegate.instance().images.first!.photoID!)
-        firstViewController.imageView.kf.setImage(with: resource)
-        //firstViewController.downloadImage(with: AppDelegate.instance().images.first!)
+        firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (_, error, _, _) in
+            if error == nil {
+                firstViewController.buttonsView.alpha = 0.65
+            }
+        })
         self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
     }
     
@@ -47,7 +50,11 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
                 nextViewController.photo = AppDelegate.instance().images[currentIndex + 1]
                 let url = URL(string: AppDelegate.instance().images[currentIndex + 1].imageURL)
                 let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex + 1].photoID!)
-                nextViewController.imageView.kf.setImage(with: resource)
+                nextViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (_, error, _, _) in
+                    if error == nil {
+                        nextViewController.buttonsView.alpha = 0.65
+                    }
+                })
                 return nextViewController
             }
         }
@@ -68,7 +75,11 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
                 let url = URL(string: AppDelegate.instance().images[currentIndex - 1].imageURL)
                 let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex - 1].photoID!)
                 previousViewController.imageView.contentMode = .scaleToFill
-                previousViewController.imageView.kf.setImage(with: resource)
+                previousViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (_, error, _, _) in
+                    if error == nil {
+                        previousViewController.buttonsView.alpha = 0.65
+                    }
+                })
                 return previousViewController
             }
         }
