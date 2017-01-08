@@ -44,13 +44,33 @@
                                     <constraint firstItem="1DM-k3-Obp" firstAttribute="centerY" secondItem="BPE-kg-cjC" secondAttribute="centerY" id="gwk-hi-T3A"/>
                                 </constraints>
                             </view>
+                            <view alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5J0-vt-mm1">
+                                <rect key="frame" x="137" y="298.5" width="100" height="70"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Saved" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DI9-wj-Qhm">
+                                        <rect key="frame" x="26.5" y="24.5" width="47" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstItem="DI9-wj-Qhm" firstAttribute="centerY" secondItem="5J0-vt-mm1" secondAttribute="centerY" id="0xk-jU-6V4"/>
+                                    <constraint firstAttribute="height" constant="70" id="34z-G5-KDc"/>
+                                    <constraint firstItem="DI9-wj-Qhm" firstAttribute="centerX" secondItem="5J0-vt-mm1" secondAttribute="centerX" id="q1z-GE-KzM"/>
+                                    <constraint firstAttribute="width" constant="100" id="qdt-9l-E38"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="8Eh-x0-LD6"/>
                             <constraint firstAttribute="trailing" secondItem="Ljp-3F-EIW" secondAttribute="trailing" id="GEy-5t-Kq5"/>
+                            <constraint firstItem="5J0-vt-mm1" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="KZu-h2-WoQ"/>
                             <constraint firstItem="BPE-kg-cjC" firstAttribute="top" secondItem="Ljp-3F-EIW" secondAttribute="bottom" constant="-70" id="Xbh-pZ-0CJ"/>
                             <constraint firstAttribute="trailing" secondItem="BPE-kg-cjC" secondAttribute="trailing" id="YiJ-Mg-yWg"/>
+                            <constraint firstItem="5J0-vt-mm1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Zx9-ib-8yM"/>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kL5-H2-ryp"/>
                             <constraint firstItem="BPE-kg-cjC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="klZ-ti-cAt"/>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xhd-u9-eUn"/>
@@ -59,6 +79,7 @@
                     <connections>
                         <outlet property="buttonsView" destination="BPE-kg-cjC" id="EWT-wX-N5E"/>
                         <outlet property="imageView" destination="Ljp-3F-EIW" id="6K2-VH-6hZ"/>
+                        <outlet property="savedView" destination="5J0-vt-mm1" id="DoX-Vw-yV5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

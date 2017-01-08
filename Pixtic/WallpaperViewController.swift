@@ -13,16 +13,29 @@ class WallpaperViewController: UIViewController {
     
     @IBOutlet weak var buttonsView: UIView!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var savedView: UIView!
     
     var photo: Photo!
         
     override func viewDidLoad() {
         super.viewDidLoad()
+
     }
 
     @IBAction func savePressed(_ sender: Any) {
-        UIImageWriteToSavedPhotosAlbum(imageView.image!, nil, nil, nil)
+        self.savedView.layer.cornerRadius = 10
+        self.savedView.layer.masksToBounds = true
+        
+        UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
+        UIView.animate(withDuration: 0.5) {
+            self.savedView.alpha = 0.90
+        }
+        let when = DispatchTime.now() + 2
+        DispatchQueue.main.asyncAfter(deadline: when){
+            UIView.animate(withDuration: 0.5, animations: { 
+                self.savedView.alpha = 0
+            })
+        }
     }
-    
 }
 
