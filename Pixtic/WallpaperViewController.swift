@@ -43,7 +43,7 @@ class WallpaperViewController: UIViewController {
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 70))
         container.backgroundColor = UIColor.black
         container.alpha = 0.0
-        container.center = AppDelegate.instance().window!.center
+        container.center = self.view.center
         container.layer.cornerRadius = 10
         container.layer.masksToBounds = true
         
@@ -60,7 +60,7 @@ class WallpaperViewController: UIViewController {
         container.addConstraints([centerY,centerX])
         container.addSubview(savedLabel)
         
-        AppDelegate.instance().window?.addSubview(container)
+        self.view.addSubview(container)
         
         
         UIView.animate(withDuration: 0.3) {
