@@ -16,6 +16,8 @@
 		38FEF6A31E1EF95000727681 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FEF6A11E1EF95000727681 /* Main.storyboard */; };
 		38FEF6A51E1EF95000727681 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 38FEF6A41E1EF95000727681 /* Assets.xcassets */; };
 		38FEF6A81E1EF95000727681 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FEF6A61E1EF95000727681 /* LaunchScreen.storyboard */; };
+		38FF37F41E25347C0020CB7A /* CategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF37F31E25347C0020CB7A /* CategoryCell.swift */; };
+		38FF37F61E2534A20020CB7A /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FF37F51E2534A20020CB7A /* MenuViewController.swift */; };
 		B93402819262AD733CC6B582 /* Pods_Pixtic.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EB0122954913DDDE4F741E7D /* Pods_Pixtic.framework */; };
 /* End PBXBuildFile section */
 
@@ -32,6 +34,8 @@
 		38FEF6A41E1EF95000727681 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		38FEF6A71E1EF95000727681 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		38FEF6A91E1EF95000727681 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		38FF37F31E25347C0020CB7A /* CategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryCell.swift; sourceTree = "<group>"; };
+		38FF37F51E2534A20020CB7A /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		998B17B1A3CD2BE6C4C1C23F /* Pods-Pixtic.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pixtic.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Pixtic/Pods-Pixtic.debug.xcconfig"; sourceTree = "<group>"; };
 		EB0122954913DDDE4F741E7D /* Pods_Pixtic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Pixtic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -61,6 +65,7 @@
 			children = (
 				38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */,
 				381DECE31E202C33004F719E /* PageViewController.swift */,
+				38FF37F51E2534A20020CB7A /* MenuViewController.swift */,
 			);
 			name = "VIew Controllers";
 			sourceTree = "<group>";
@@ -104,6 +109,7 @@
 		38FEF69C1E1EF95000727681 /* Pixtic */ = {
 			isa = PBXGroup;
 			children = (
+				38FF37F21E25345D0020CB7A /* Custom Cells */,
 				384530711E22B2680036C4FC /* Storyboards */,
 				383AA55C1E21C6D60066BE3D /* Models */,
 				383AA55B1E21C6BF0066BE3D /* VIew Controllers */,
@@ -113,6 +119,14 @@
 				383AA5571E218A600066BE3D /* GoogleService-Info.plist */,
 			);
 			path = Pixtic;
+			sourceTree = "<group>";
+		};
+		38FF37F21E25345D0020CB7A /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				38FF37F31E25347C0020CB7A /* CategoryCell.swift */,
+			);
+			name = "Custom Cells";
 			sourceTree = "<group>";
 		};
 		8E7F75437EAE75F1C2742C3E /* Pods */ = {
@@ -251,9 +265,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				383AA55A1E21AE710066BE3D /* Photo.swift in Sources */,
+				38FF37F61E2534A20020CB7A /* MenuViewController.swift in Sources */,
 				381DECE41E202C33004F719E /* PageViewController.swift in Sources */,
 				38FEF6A01E1EF95000727681 /* WallpaperViewController.swift in Sources */,
 				38FEF69E1E1EF95000727681 /* AppDelegate.swift in Sources */,
+				38FF37F41E25347C0020CB7A /* CategoryCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

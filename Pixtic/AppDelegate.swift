@@ -123,6 +123,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func toogleMenu() {
+        let vc = UIStoryboard(name: "Menu", bundle: nil).instantiateInitialViewController()
+        
+        if let window = window{
+            showButtons(show: false)
+            window.rootViewController?.present(vc!, animated: true, completion: nil)
+        }
     }
     
     func shareWallpaper() {
