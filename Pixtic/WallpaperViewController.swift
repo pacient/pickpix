@@ -21,18 +21,55 @@ class WallpaperViewController: UIViewController {
         super.viewDidLoad()
     }
 
-    @IBAction func savePressed(_ sender: Any) {
-        self.savedView.layer.cornerRadius = 10
-        self.savedView.layer.masksToBounds = true
-        
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.currentImage), name: NSNotification.Name(rawValue: "getImage"), object: nil)
+
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func currentImage() {
+        AppDelegate.instance().currentImage = self.imageView.image
         UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
+        showSavedView()
+    }
+    
+    
+    func showSavedView() {
+        let container = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 70))
+        container.backgroundColor = UIColor.black
+        container.alpha = 0.0
+        container.center = AppDelegate.instance().window!.center
+        container.layer.cornerRadius = 10
+        container.layer.masksToBounds = true
+        
+        let savedLabel = UILabel()
+        savedLabel.frame = container.frame
+        savedLabel.text = "Saved"
+        savedLabel.textColor = UIColor.white
+        savedLabel.textAlignment = .center
+        savedLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        let centerX = NSLayoutConstraint(item: savedLabel, attribute: .centerX, relatedBy: .equal, toItem: container, attribute: .centerX, multiplier: 1, constant: 0)
+        let centerY = NSLayoutConstraint(item: savedLabel, attribute: .centerY, relatedBy: .equal, toItem: container, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        container.addConstraints([centerY,centerX])
+        container.addSubview(savedLabel)
+        
+        AppDelegate.instance().window?.addSubview(container)
+        
+        
         UIView.animate(withDuration: 0.3) {
-            self.savedView.alpha = 0.90
+            container.alpha = 0.90
         }
-        let when = DispatchTime.now() + 2
+        let when = DispatchTime.now() + 1.2
         DispatchQueue.main.asyncAfter(deadline: when){
             UIView.animate(withDuration: 0.3, animations: {
-                self.savedView.alpha = 0
+                container.alpha = 0
             })
         }
     }
