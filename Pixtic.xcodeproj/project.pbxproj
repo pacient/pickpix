@@ -10,6 +10,7 @@
 		381DECE41E202C33004F719E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DECE31E202C33004F719E /* PageViewController.swift */; };
 		383AA5581E218A600066BE3D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 383AA5571E218A600066BE3D /* GoogleService-Info.plist */; };
 		383AA55A1E21AE710066BE3D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AA5591E21AE710066BE3D /* Photo.swift */; };
+		384530701E22B2620036C4FC /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3845306F1E22B2620036C4FC /* Menu.storyboard */; };
 		38FEF69E1E1EF95000727681 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEF69D1E1EF95000727681 /* AppDelegate.swift */; };
 		38FEF6A01E1EF95000727681 /* WallpaperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */; };
 		38FEF6A31E1EF95000727681 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FEF6A11E1EF95000727681 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 		381DECE31E202C33004F719E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		383AA5571E218A600066BE3D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		383AA5591E21AE710066BE3D /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		3845306F1E22B2620036C4FC /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		38FEF69A1E1EF95000727681 /* Pixtic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixtic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FEF69D1E1EF95000727681 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewController.swift; sourceTree = "<group>"; };
@@ -71,6 +73,16 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		384530711E22B2680036C4FC /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				3845306F1E22B2620036C4FC /* Menu.storyboard */,
+				38FEF6A11E1EF95000727681 /* Main.storyboard */,
+				38FEF6A61E1EF95000727681 /* LaunchScreen.storyboard */,
+			);
+			name = Storyboards;
+			sourceTree = "<group>";
+		};
 		38FEF6911E1EF94F00727681 = {
 			isa = PBXGroup;
 			children = (
@@ -92,12 +104,11 @@
 		38FEF69C1E1EF95000727681 /* Pixtic */ = {
 			isa = PBXGroup;
 			children = (
+				384530711E22B2680036C4FC /* Storyboards */,
 				383AA55C1E21C6D60066BE3D /* Models */,
 				383AA55B1E21C6BF0066BE3D /* VIew Controllers */,
 				38FEF69D1E1EF95000727681 /* AppDelegate.swift */,
-				38FEF6A11E1EF95000727681 /* Main.storyboard */,
 				38FEF6A41E1EF95000727681 /* Assets.xcassets */,
-				38FEF6A61E1EF95000727681 /* LaunchScreen.storyboard */,
 				38FEF6A91E1EF95000727681 /* Info.plist */,
 				383AA5571E218A600066BE3D /* GoogleService-Info.plist */,
 			);
@@ -176,6 +187,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				384530701E22B2620036C4FC /* Menu.storyboard in Resources */,
 				383AA5581E218A600066BE3D /* GoogleService-Info.plist in Resources */,
 				38FEF6A81E1EF95000727681 /* LaunchScreen.storyboard in Resources */,
 				38FEF6A51E1EF95000727681 /* Assets.xcassets in Resources */,

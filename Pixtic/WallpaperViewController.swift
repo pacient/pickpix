@@ -19,7 +19,6 @@ class WallpaperViewController: UIViewController {
         
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
 
     @IBAction func savePressed(_ sender: Any) {
