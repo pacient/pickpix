@@ -11,9 +11,10 @@ import Firebase
 import Kingfisher
 import GoogleMobileAds
 
-class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
+class PageViewController: UIPageViewController, UIPageViewControllerDataSource, GADInterstitialDelegate {
     
     var imageURLs: [String]!
+    var interstitial: GADInterstitial!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,6 +26,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         bannerView.adUnitID = "ca-app-pub-9037734016404410/7744729286"
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
+        
+        interstitial = createAndLoadInterstitial()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getFirstVC), name: NSNotification.Name(rawValue: "getVC"), object: nil)
         
@@ -61,6 +64,12 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
                     if img != nil {
                     }
                 })
+                if ((currentIndex + 1) % 6 == 0) && currentIndex > 0 {
+                    if interstitial.isReady{
+                        AppDelegate.instance().showButtons(show: false)
+                        interstitial.present(fromRootViewController: self)
+                    }
+                }
                 return nextViewController
             }
         }
@@ -85,10 +94,29 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
                     if img != nil {
                     }
                 })
+                if ((currentIndex + 1) % 6 == 0) && currentIndex > 0 {
+                    if interstitial.isReady{
+                        AppDelegate.instance().showButtons(show: false)
+                        interstitial.present(fromRootViewController: self)
+                    }
+                }
                 return previousViewController
             }
         }
         
         return nil
+    }
+    
+    //MARK: Interstitial Delegate
+    func interstitialDidDismissScreen(_ ad: GADInterstitial) {
+        interstitial = createAndLoadInterstitial()
+        AppDelegate.instance().showButtons(show: true)
+    }
+    
+    func createAndLoadInterstitial() -> GADInterstitial {
+        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-9037734016404410/3057177684")
+        interstitial.delegate = self
+        interstitial.load(GADRequest())
+        return interstitial
     }
 }
