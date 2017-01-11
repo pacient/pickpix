@@ -64,7 +64,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.deselectRow(at: indexPath, animated: false)
         
         AppDelegate.instance().getWallpapers(from: self.categories![indexPath.row].name)
-        
+        UIApplication.shared.setStatusBarHidden(true, with: .slide)
         self.dismiss(animated: true, completion: nil)
     }
     

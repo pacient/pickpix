@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		381DECE41E202C33004F719E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DECE31E202C33004F719E /* PageViewController.swift */; };
 		383AA55A1E21AE710066BE3D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AA5591E21AE710066BE3D /* Photo.swift */; };
+		383B58FA1E26A08300DED73E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383B58F91E26A08300DED73E /* Reachability.swift */; };
 		384530701E22B2620036C4FC /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3845306F1E22B2620036C4FC /* Menu.storyboard */; };
 		38607B111E25733E007D05C8 /* Header.xib in Resources */ = {isa = PBXBuildFile; fileRef = 38607B101E25733E007D05C8 /* Header.xib */; };
 		38607B141E2649A6007D05C8 /* UIDevice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38607B131E2649A6007D05C8 /* UIDevice.swift */; };
@@ -28,6 +29,7 @@
 		21A28905E478796EB5A5E166 /* Pods-Pixtic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pixtic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pixtic/Pods-Pixtic.release.xcconfig"; sourceTree = "<group>"; };
 		381DECE31E202C33004F719E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		383AA5591E21AE710066BE3D /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		383B58F91E26A08300DED73E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3845306F1E22B2620036C4FC /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
 		38607B101E25733E007D05C8 /* Header.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Header.xib; sourceTree = "<group>"; };
 		38607B131E2649A6007D05C8 /* UIDevice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIDevice.swift; sourceTree = "<group>"; };
@@ -81,6 +83,7 @@
 			children = (
 				383AA5591E21AE710066BE3D /* Photo.swift */,
 				38FF37F71E2544790020CB7A /* Category.swift */,
+				383B58F91E26A08300DED73E /* Reachability.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				381DECE41E202C33004F719E /* PageViewController.swift in Sources */,
 				38FEF6A01E1EF95000727681 /* WallpaperViewController.swift in Sources */,
 				38FEF69E1E1EF95000727681 /* AppDelegate.swift in Sources */,
+				383B58FA1E26A08300DED73E /* Reachability.swift in Sources */,
 				38FF37F41E25347C0020CB7A /* CategoryCell.swift in Sources */,
 				38FF37F81E2544790020CB7A /* Category.swift in Sources */,
 				38607B141E2649A6007D05C8 /* UIDevice.swift in Sources */,
