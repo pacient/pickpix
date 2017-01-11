@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentImage: UIImage!
     let view = UIView()
     let bannerAd = GADBannerView()
-
+    
     var ref:FIRDatabaseReference!
     var added = false
     
@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
-        GADMobileAds.configure(withApplicationID: "https://www.asme.org/getmedia/0dacb372-1cb6-464d-8f82-dd76a4aa50f2/Lee-Iacocca-Engineering-Icon_01.jpg.aspx?width=340")
+        GADMobileAds.configure(withApplicationID: "ca-app-pub-9037734016404410~4791262881")
         ref = FIRDatabase.database().reference()
         
         print(UIDevice.current.modelName)
@@ -143,7 +143,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let shareWidth = NSLayoutConstraint(item: shareButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
                 
                 bannerAd.frame = CGRect(x: 0, y: view.frame.origin.y + 70, width: window.frame.width, height: 50)
-
+                
                 let y = NSLayoutConstraint(item: bannerAd, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
                 
                 // add constraints of buttons to that view
@@ -171,6 +171,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func shareWallpaper() {
+        if window != nil {
+            NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentImage"), object: nil)
+            let activityViewController = UIActivityViewController(activityItems: [self.currentImage], applicationActivities: nil)
+            activityViewController.popoverPresentationController?.sourceView = self.window
+            self.showButtons(show: false)
+            activityViewController.completionWithItemsHandler = { _, _, _, _ in
+                self.showButtons(show: true)
+            }
+            self.window!.rootViewController!.present(activityViewController, animated: true, completion: nil)
+        }
     }
     
     func savePressed() {

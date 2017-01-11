@@ -24,12 +24,17 @@ class WallpaperViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         NotificationCenter.default.addObserver(self, selector: #selector(self.currentImage), name: NSNotification.Name(rawValue: "getImage"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.getImage), name: NSNotification.Name(rawValue: "currentImage"), object: nil)
 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func getImage() {
+        AppDelegate.instance().currentImage = self.imageView.image
     }
     
     func currentImage() {

@@ -17,11 +17,13 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     var categories: [Category]?
     var ref: FIRDatabaseReference!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         ref = FIRDatabase.database().reference()
 
+        UIApplication.shared.setStatusBarHidden(false, with: .slide)
         retrieveCategories()
     }
 
@@ -93,9 +95,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: Other methods
     @IBAction func donePressed(_ sender: Any) {
-        self.dismiss(animated: true) { 
+        self.dismiss(animated: true) {
+            UIApplication.shared.setStatusBarHidden(true, with: .slide)
             AppDelegate.instance().showButtons(show: true)
         }
     }
-    
 }
