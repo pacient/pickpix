@@ -20,6 +20,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         view.backgroundColor = UIColor.black
         dataSource = self
         
+        
         NotificationCenter.default.addObserver(self, selector: #selector(getFirstVC), name: NSNotification.Name(rawValue: "getVC"), object: nil)
         
     }
@@ -33,6 +34,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
             if img != nil {
                 AppDelegate.instance().addButtonView()
+                AppDelegate.instance().showButtons(show: true)
             }
         })
         self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)

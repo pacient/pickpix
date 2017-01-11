@@ -16,13 +16,16 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var tableview: UITableView!
     
     var categories: [Category]?
-    
+    var ref: FIRDatabaseReference!
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        ref = FIRDatabase.database().reference()
 
         retrieveCategories()
     }
 
+    //MARK: TableView Delegate
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -37,6 +40,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         cell.categoryName.text = self.categories?[indexPath.row].name
         let resource = ImageResource(downloadURL: URL(string: (self.categories?[indexPath.row].iconURL!)!)!)
         cell.categoryIcon.kf.setImage(with: resource)
+        cell.imageCountLbl.text = "\(self.categories![indexPath.row].imagesCount!)"
 
         return cell
     }
@@ -53,16 +57,26 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 40
     }
-    func retrieveCategories() {
-        let ref = FIRDatabase.database().reference()
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: false)
         
-        ref.child("categories").queryOrdered(byChild: "All").observeSingleEvent(of: .value, with: { (snapshot) in
+        AppDelegate.instance().getWallpapers(from: self.categories![indexPath.row].name)
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    //MARK: GET request calls
+    func retrieveCategories() {
+        
+        self.ref.child(UIDevice.current.modelName).queryOrdered(byChild: "All").observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let cats = snapshot.value as? [String : AnyObject] {
                 self.categories = [Category]()
                 for (name,value) in cats {
                     let category = Category()
                     category.name = name
+                    category.imagesCount = value.count - 1
                     category.iconURL = value["icon"] as! String
                     self.categories?.append(category)
                 }
@@ -76,6 +90,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         })
     }
     
+    //MARK: Other methods
     @IBAction func donePressed(_ sender: Any) {
         self.dismiss(animated: true) { 
             AppDelegate.instance().showButtons(show: true)

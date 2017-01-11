@@ -12,5 +12,6 @@ class Category: NSObject {
 
     var name: String!
     var iconURL: String!
+    var imagesCount: Int!
     
 }
