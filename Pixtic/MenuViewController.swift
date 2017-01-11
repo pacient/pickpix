@@ -46,7 +46,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 40
+        return 100
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -81,7 +81,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                     self.categories?.append(category)
                 }
             }
-            self.categories?.reverse()
+            let sorted = self.categories?.sorted { $0.name < $1.name }
+            self.categories = sorted
             self.tableview.reloadData()
             let blurEffect = UIBlurEffect(style: .light)
             let blur = UIVisualEffectView(effect: blurEffect)

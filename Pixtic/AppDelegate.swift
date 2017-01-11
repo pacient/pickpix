@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import GoogleMobileAds
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,7 +17,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var images: [Photo]!
     var currentImage: UIImage!
     let view = UIView()
-    
+    let bannerAd = GADBannerView()
+
     var ref:FIRDatabaseReference!
     var added = false
     
@@ -26,6 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         FIRApp.configure()
+        GADMobileAds.configure(withApplicationID: "https://www.asme.org/getmedia/0dacb372-1cb6-464d-8f82-dd76a4aa50f2/Lee-Iacocca-Engineering-Icon_01.jpg.aspx?width=340")
         ref = FIRDatabase.database().reference()
         
         print(UIDevice.current.modelName)
@@ -103,7 +106,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = window {
             if !added {
                 view.backgroundColor = UIColor.clear
-                view.frame = CGRect(x: 0, y: window.frame.height - 70, width: window.frame.width, height: 70)
+                view.frame = CGRect(x: 0, y: window.frame.height - 120, width: window.frame.width, height: 70)
                 
                 //save button
                 let saveButton = UIButton()
@@ -139,14 +142,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let shareHeight = NSLayoutConstraint(item: shareButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
                 let shareWidth = NSLayoutConstraint(item: shareButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 50)
                 
+                bannerAd.frame = CGRect(x: 0, y: view.frame.origin.y + 70, width: window.frame.width, height: 50)
+
+                let y = NSLayoutConstraint(item: bannerAd, attribute: .top, relatedBy: .equal, toItem: view, attribute: .bottom, multiplier: 1, constant: 0)
+                
                 // add constraints of buttons to that view
-                view.addConstraints([centerY,centerX,height,width,centerYmenu,leading,menuWidth,menuHeight,centerYshare,trailing,shareHeight,shareWidth])
+                view.addConstraints([centerY,centerX,height,width,centerYmenu,leading,menuWidth,menuHeight,centerYshare,trailing,shareHeight,shareWidth,y])
                 
                 view.addSubview(saveButton)
                 view.addSubview(menuButton)
                 view.addSubview(shareButton)
+                view.addSubview(bannerAd)
                 
                 self.window!.addSubview(view)
+                self.window!.addSubview(bannerAd)
                 self.added = true
             }
         }
@@ -172,11 +181,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if let window = window{
             if show {
                 UIView.animate(withDuration: 0.5, animations: {
-                    self.view.frame = CGRect(x: 0, y: window.frame.height - 70, width: window.frame.width, height: 70)
+                    self.view.frame = CGRect(x: 0, y: window.frame.height - 120, width: window.frame.width, height: 70)
+                    self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
                 })
             }else{
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 70)
+                    self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
                 })
             }
         }

@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import Kingfisher
+import GoogleMobileAds
 
 class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
     
@@ -20,6 +21,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource {
         view.backgroundColor = UIColor.black
         dataSource = self
         
+        let bannerView = AppDelegate.instance().bannerAd
+        bannerView.adUnitID = "ca-app-pub-9037734016404410/7744729286"
+        bannerView.rootViewController = self
+        bannerView.load(GADRequest())
         
         NotificationCenter.default.addObserver(self, selector: #selector(getFirstVC), name: NSNotification.Name(rawValue: "getVC"), object: nil)
         
