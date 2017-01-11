@@ -14,14 +14,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     
     @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var tablewviewHeightConstraint: NSLayoutConstraint!
     
     var categories: [Category]?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
         retrieveCategories()
     }
 
@@ -71,9 +69,10 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             }
             self.categories?.reverse()
             self.tableview.reloadData()
-            DispatchQueue.main.async {
-                self.tablewviewHeightConstraint.constant = self.tableview.contentSize.height >= self.view.frame.height - 114 ? self.view.frame.height - 114 : self.tableview.contentSize.height
-            }
+            let blurEffect = UIBlurEffect(style: .light)
+            let blur = UIVisualEffectView(effect: blurEffect)
+            blur.frame = self.view.frame
+            self.tableview.backgroundView?.addSubview(blur)
         })
     }
     
