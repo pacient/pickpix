@@ -43,13 +43,16 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     func getFirstVC() {
         let firstViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
         firstViewController.loadView()
+        firstViewController.actIndc.startAnimating()
         firstViewController.photo = AppDelegate.instance().images.first!
         let url = URL(string: AppDelegate.instance().images.first!.imageURL!)!
         let resource = ImageResource(downloadURL: url, cacheKey: AppDelegate.instance().images.first!.photoID!)
-        firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
+        firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholderLoading"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
             if img != nil {
+                firstViewController.actIndc.stopAnimating()
                 AppDelegate.instance().addButtonView()
                 AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
+                
             }
         })
         self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
@@ -57,30 +60,33 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
         
-        let vc = viewController as! WallpaperViewController
-        
-        if let currentIndex = AppDelegate.instance().images.index(of: vc.photo){
+        if let vc = viewController as? WallpaperViewController {
             
-            if currentIndex < AppDelegate.instance().images.count - 1 {
-                let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
-                nextViewController.loadView()
-                nextViewController.photo = AppDelegate.instance().images[currentIndex + 1]
-                let url = URL(string: AppDelegate.instance().images[currentIndex + 1].imageURL)
-                let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex + 1].photoID!)
-                nextViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
-                    if img != nil {
-                        self.nextCounter += 1
+            if let currentIndex = AppDelegate.instance().images.index(of: vc.photo){
+                
+                if currentIndex < AppDelegate.instance().images.count - 1 {
+                    let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
+                    nextViewController.loadView()
+                    nextViewController.actIndc.startAnimating()
+                    nextViewController.photo = AppDelegate.instance().images[currentIndex + 1]
+                    let url = URL(string: AppDelegate.instance().images[currentIndex + 1].imageURL)
+                    let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex + 1].photoID!)
+                    nextViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholderLoading"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
+                        if img != nil {
+                            nextViewController.actIndc.stopAnimating()
+                            self.nextCounter += 1
+                        }
+                    })
+                    if ((self.nextCounter + 1) % 10 == 0) && self.nextCounter > 0 {
+                        if interstitial.isReady{
+                            AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
+                            interstitial.present(fromRootViewController: self)
+                            self.nextCounter = 0
+                            self.previousCounter = 0
+                        }
                     }
-                })
-                if ((self.nextCounter + 1) % 10 == 0) && self.nextCounter > 0 {
-                    if interstitial.isReady{
-                        AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
-                        interstitial.present(fromRootViewController: self)
-                        self.nextCounter = 0
-                        self.previousCounter = 0
-                    }
+                    return nextViewController
                 }
-                return nextViewController
             }
         }
         
@@ -89,31 +95,34 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
         
-        let vc = viewController as! WallpaperViewController
-        
-        if let currentIndex = AppDelegate.instance().images.index(of: vc.photo){
+        if let vc = viewController as? WallpaperViewController{
             
-            if currentIndex > 0 {
-                let previousViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
-                previousViewController.loadView()
-                previousViewController.photo = AppDelegate.instance().images[currentIndex - 1]
-                let url = URL(string: AppDelegate.instance().images[currentIndex - 1].imageURL)
-                let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex - 1].photoID!)
-                previousViewController.imageView.contentMode = .scaleToFill
-                previousViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
-                    if img != nil {
-                        self.previousCounter += 1
+            if let currentIndex = AppDelegate.instance().images.index(of: vc.photo){
+                
+                if currentIndex > 0 {
+                    let previousViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
+                    previousViewController.loadView()
+                    previousViewController.actIndc.startAnimating()
+                    previousViewController.photo = AppDelegate.instance().images[currentIndex - 1]
+                    let url = URL(string: AppDelegate.instance().images[currentIndex - 1].imageURL)
+                    let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex - 1].photoID!)
+                    previousViewController.imageView.contentMode = .scaleToFill
+                    previousViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholderLoading"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
+                        if img != nil {
+                            previousViewController.actIndc.stopAnimating()
+                            self.previousCounter += 1
+                        }
+                    })
+                    if ((self.previousCounter + 1) % 10 == 0) && self.previousCounter > 0 {
+                        if interstitial.isReady{
+                            AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
+                            interstitial.present(fromRootViewController: self)
+                            self.previousCounter = 0
+                            self.nextCounter = 0
+                        }
                     }
-                })
-                if ((self.previousCounter + 1) % 10 == 0) && self.previousCounter > 0 {
-                    if interstitial.isReady{
-                        AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
-                        interstitial.present(fromRootViewController: self)
-                        self.previousCounter = 0
-                        self.nextCounter = 0
-                    }
+                    return previousViewController
                 }
-                return previousViewController
             }
         }
         
@@ -133,5 +142,5 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         return interstitial
     }
     
-
+    
 }

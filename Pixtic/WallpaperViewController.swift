@@ -16,6 +16,7 @@ class WallpaperViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var savedView: UIView!
     
+    @IBOutlet weak var actIndc: UIActivityIndicatorView!
     var photo: Photo!
     
     var buttonsHidden = false
@@ -33,6 +34,8 @@ class WallpaperViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2
         self.view.addGestureRecognizer(tap)
+        
+        actIndc.hidesWhenStopped = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
