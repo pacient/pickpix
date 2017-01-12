@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import Photos
 
 class WallpaperViewController: UIViewController {
     
@@ -38,9 +39,25 @@ class WallpaperViewController: UIViewController {
     }
     
     func currentImage() {
-        AppDelegate.instance().currentImage = self.imageView.image
-        UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
-        showSavedView()
+        if PHPhotoLibrary.authorizationStatus() == .authorized{
+            AppDelegate.instance().currentImage = self.imageView.image
+            UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
+            showSavedView()
+        }else {
+            PHPhotoLibrary.requestAuthorization({ (status) in
+                let alertView = UIAlertController(title: "No Access", message: "Wallpapers can't be saved because access to photos was denied. To give access press Settings and turn ON the switcher on photos", preferredStyle: .alert)
+                let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+                    let settingsUrl = URL(string:UIApplicationOpenSettingsURLString)
+                    if let url = settingsUrl {
+                        UIApplication.shared.openURL(url)
+                    }
+                }
+                alertView.addAction(settingsAction)
+                alertView.addAction(okAction)
+                self.present(alertView, animated: true, completion: nil)
+            })
+        }
     }
     
     
