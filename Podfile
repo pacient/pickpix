@@ -12,6 +12,7 @@ target 'Pixtic' do
 	pod 'Firebase/Database'
 	pod 'Firebase/Storage'
 	pod 'Firebase/AdMob'
+	pod 'Firebase/Crash'
 	pod 'Kingfisher', '~> 3.0'
 
 end
