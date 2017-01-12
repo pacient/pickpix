@@ -41,8 +41,7 @@ class WallpaperViewController: UIViewController {
     func currentImage() {
         if PHPhotoLibrary.authorizationStatus() == .authorized{
             AppDelegate.instance().currentImage = self.imageView.image
-            UIImageWriteToSavedPhotosAlbum(self.imageView.image!, nil, nil, nil)
-            showSavedView()
+            UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)), nil)
         }else {
             PHPhotoLibrary.requestAuthorization({ (status) in
                 let alertView = UIAlertController(title: "No Access", message: "Wallpapers can't be saved because access to photos was denied. To give access press Settings and turn ON the switcher on photos", preferredStyle: .alert)
@@ -59,7 +58,17 @@ class WallpaperViewController: UIViewController {
             })
         }
     }
-    
+
+    func imageSaved(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: CGContext?){
+        if didFinishSavingWithError == nil {
+            showSavedView()
+        }else {
+            let alert = UIAlertController(title: "Error", message: "Something went wrong and your wallpaper was not saved. Please try again", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
     
     func showSavedView() {
         let container = UIView(frame: CGRect(x: 0, y: 0, width: 100, height: 70))
