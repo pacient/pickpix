@@ -41,6 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: GET request calls
     func getWallpapersFromDatabase() {
         
+        if isInternetAvailable(){
         ref.child(UIDevice.current.modelName).child("All").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
             
             if let wallpapers = snapshot.value as? [String : AnyObject] {
@@ -57,6 +58,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         })
         ref.removeAllObservers()
+        }else{
+            print("no internet")
+        }
     }
     
     func getWallpapers(from categoryName: String){
@@ -166,7 +170,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if let window = window{
             showButtons(show: false)
-            window.rootViewController?.present(vc!, animated: true, completion: nil)
+            window.rootViewController?.present(vc!, animated: false, completion: nil)
         }
     }
     
@@ -203,4 +207,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 }
-
