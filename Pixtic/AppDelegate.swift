@@ -116,7 +116,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let saveButton = UIButton()
                 saveButton.frame = CGRect(x: view.frame.width / 2, y: view.frame.height / 2, width: 50, height: 50)
                 saveButton.addTarget(self, action: #selector(self.savePressed), for: .touchUpInside)
-                saveButton.setImage(#imageLiteral(resourceName: "saveSVG"), for: .normal)
+                saveButton.setImage(#imageLiteral(resourceName: "180 - iPhone 6 Plus"), for: .normal)
                 saveButton.translatesAutoresizingMaskIntoConstraints = false
                 
                 let centerX = NSLayoutConstraint(item: saveButton, attribute: .centerX, relatedBy: .equal, toItem: view, attribute: .centerX, multiplier: 1, constant: 0)
@@ -127,7 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // menu button
                 let menuButton = UIButton()
                 menuButton.addTarget(self, action: #selector(toogleMenu), for: .touchUpInside)
-                menuButton.setImage(#imageLiteral(resourceName: "menuICON"), for: .normal)
+                menuButton.setImage(#imageLiteral(resourceName: "menuPNG"), for: .normal)
                 menuButton.translatesAutoresizingMaskIntoConstraints = false
                 
                 let centerYmenu = NSLayoutConstraint(item: menuButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
@@ -138,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 //share button
                 let shareButton = UIButton()
                 shareButton.addTarget(self, action: #selector(shareWallpaper), for: .touchUpInside)
-                shareButton.setImage(#imageLiteral(resourceName: "sharePNG"), for: .normal)
+                shareButton.setImage(#imageLiteral(resourceName: "share"), for: .normal)
                 shareButton.translatesAutoresizingMaskIntoConstraints = false
                 
                 let centerYshare = NSLayoutConstraint(item: shareButton, attribute: .centerY, relatedBy: .equal, toItem: view, attribute: .centerY, multiplier: 1, constant: 0)
