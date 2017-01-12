@@ -72,7 +72,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                         self.nextCounter += 1
                     }
                 })
-                if ((self.nextCounter + 1) % 8 == 0) && self.nextCounter > 0 {
+                if ((self.nextCounter + 1) % 10 == 0) && self.nextCounter > 0 {
                     if interstitial.isReady{
                         AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
                         interstitial.present(fromRootViewController: self)
@@ -105,7 +105,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                         self.previousCounter += 1
                     }
                 })
-                if ((self.previousCounter + 1) % 8 == 0) && self.previousCounter > 0 {
+                if ((self.previousCounter + 1) % 10 == 0) && self.previousCounter > 0 {
                     if interstitial.isReady{
                         AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
                         interstitial.present(fromRootViewController: self)
