@@ -42,22 +42,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getWallpapersFromDatabase() {
         
         if isInternetAvailable(){
-        ref.child(UIDevice.current.modelName).child("All").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let wallpapers = snapshot.value as? [String : AnyObject] {
-                self.images = [Photo]()
-                for (id,url) in wallpapers {
-                    if id != "icon"{
-                        let photo = Photo()
-                        photo.photoID = id
-                        photo.imageURL = url as! String
-                        self.images.append(photo)
+            ref.child(UIDevice.current.modelName).child("All").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+                
+                if let wallpapers = snapshot.value as? [String : AnyObject] {
+                    self.images = [Photo]()
+                    for (id,url) in wallpapers {
+                        if id != "icon"{
+                            let photo = Photo()
+                            photo.photoID = id
+                            photo.imageURL = url as! String
+                            self.images.append(photo)
+                        }
                     }
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
                 }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
-            }
-        })
-        ref.removeAllObservers()
+            })
+            ref.removeAllObservers()
         }else{
             print("no internet")
         }
@@ -169,7 +169,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let vc = UIStoryboard(name: "Menu", bundle: nil).instantiateInitialViewController()
         
         if let window = window{
-            showButtons(show: false)
+            showButtons(show: false, moveBannerAd: true)
             window.rootViewController?.present(vc!, animated: false, completion: nil)
         }
     }
@@ -179,9 +179,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             NotificationCenter.default.post(name: NSNotification.Name(rawValue: "currentImage"), object: nil)
             let activityViewController = UIActivityViewController(activityItems: [self.currentImage], applicationActivities: nil)
             activityViewController.popoverPresentationController?.sourceView = self.window
-            self.showButtons(show: false)
+            self.showButtons(show: false, moveBannerAd: true)
             activityViewController.completionWithItemsHandler = { _, _, _, _ in
-                self.showButtons(show: true)
+                self.showButtons(show: true, moveBannerAd: true)
             }
             self.window!.rootViewController!.present(activityViewController, animated: true, completion: nil)
         }
@@ -191,17 +191,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getImage"), object: nil)
     }
     
-    func showButtons(show: Bool) {
+    func showButtons(show: Bool, moveBannerAd: Bool) {
         if let window = window{
             if show {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.frame = CGRect(x: 0, y: window.frame.height - 120, width: window.frame.width, height: 70)
-                    self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
+                    if moveBannerAd{
+                        self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
+                    }
                 })
             }else{
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 70)
-                    self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
+                    if moveBannerAd {
+                        self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
+                    }
                 })
             }
         }

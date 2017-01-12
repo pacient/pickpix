@@ -17,6 +17,8 @@ class WallpaperViewController: UIViewController {
     @IBOutlet weak var savedView: UIView!
     
     var photo: Photo!
+    
+    var buttonsHidden = false
         
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +29,20 @@ class WallpaperViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.currentImage), name: NSNotification.Name(rawValue: "getImage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.getImage), name: NSNotification.Name(rawValue: "currentImage"), object: nil)
 
+        
+        let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
+        tap.numberOfTapsRequired = 2
+        self.view.addGestureRecognizer(tap)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func doubleTapped() {
+        AppDelegate.instance().showButtons(show: !buttonsHidden, moveBannerAd: false)
+        buttonsHidden = !buttonsHidden
     }
     
     func getImage() {
@@ -65,7 +76,7 @@ class WallpaperViewController: UIViewController {
         }else {
             let alert = UIAlertController(title: "Error", message: "Something went wrong and your wallpaper was not saved. Please try again", preferredStyle: .alert)
             let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            
+            alert.addAction(action)
             self.present(alert, animated: true, completion: nil)
         }
     }

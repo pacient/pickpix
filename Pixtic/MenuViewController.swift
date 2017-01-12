@@ -97,7 +97,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBAction func donePressed(_ sender: Any) {
         self.dismiss(animated: true) {
             UIApplication.shared.setStatusBarHidden(true, with: .slide)
-            AppDelegate.instance().showButtons(show: true)
+            AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
         }
     }
 }

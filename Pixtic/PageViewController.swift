@@ -49,7 +49,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
             if img != nil {
                 AppDelegate.instance().addButtonView()
-                AppDelegate.instance().showButtons(show: true)
+                AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
             }
         })
         self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
@@ -74,7 +74,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                 })
                 if ((self.nextCounter + 1) % 8 == 0) && self.nextCounter > 0 {
                     if interstitial.isReady{
-                        AppDelegate.instance().showButtons(show: false)
+                        AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
                         interstitial.present(fromRootViewController: self)
                         self.nextCounter = 0
                         self.previousCounter = 0
@@ -107,7 +107,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                 })
                 if ((self.previousCounter + 1) % 8 == 0) && self.previousCounter > 0 {
                     if interstitial.isReady{
-                        AppDelegate.instance().showButtons(show: false)
+                        AppDelegate.instance().showButtons(show: false, moveBannerAd: true)
                         interstitial.present(fromRootViewController: self)
                         self.previousCounter = 0
                         self.nextCounter = 0
@@ -123,7 +123,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     //MARK: Interstitial Delegate
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         interstitial = createAndLoadInterstitial()
-        AppDelegate.instance().showButtons(show: true)
+        AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
