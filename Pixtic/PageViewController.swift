@@ -16,6 +16,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var imageURLs: [String]!
     var interstitial: GADInterstitial!
     
+    var interstitialTestAdID = "ca-app-pub-3940256099942544/4411468910"
+    var bannerLiveAdID = "ca-app-pub-9037734016404410/7744729286"
+    var interstitialLiveAdID = "ca-app-pub-9037734016404410/3057177684"
+    
+    var previousCounter = 0
+    var nextCounter = 0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -23,7 +30,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         dataSource = self
         
         let bannerView = AppDelegate.instance().bannerAd
-        bannerView.adUnitID = "ca-app-pub-9037734016404410/7744729286"
+        bannerView.adUnitID = bannerLiveAdID
         bannerView.rootViewController = self
         bannerView.load(GADRequest())
         
@@ -62,12 +69,15 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                 let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex + 1].photoID!)
                 nextViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
                     if img != nil {
+                        self.nextCounter += 1
                     }
                 })
-                if ((currentIndex + 1) % 6 == 0) && currentIndex > 0 {
+                if ((self.nextCounter + 1) % 8 == 0) && self.nextCounter > 0 {
                     if interstitial.isReady{
                         AppDelegate.instance().showButtons(show: false)
                         interstitial.present(fromRootViewController: self)
+                        self.nextCounter = 0
+                        self.previousCounter = 0
                     }
                 }
                 return nextViewController
@@ -92,12 +102,15 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                 previousViewController.imageView.contentMode = .scaleToFill
                 previousViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
                     if img != nil {
+                        self.previousCounter += 1
                     }
                 })
-                if ((currentIndex + 1) % 6 == 0) && currentIndex > 0 {
+                if ((self.previousCounter + 1) % 8 == 0) && self.previousCounter > 0 {
                     if interstitial.isReady{
                         AppDelegate.instance().showButtons(show: false)
                         interstitial.present(fromRootViewController: self)
+                        self.previousCounter = 0
+                        self.nextCounter = 0
                     }
                 }
                 return previousViewController
@@ -114,7 +127,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: "ca-app-pub-9037734016404410/3057177684")
+        let interstitial = GADInterstitial(adUnitID: interstitialTestAdID)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
