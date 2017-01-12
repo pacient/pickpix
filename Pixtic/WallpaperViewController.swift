@@ -53,9 +53,20 @@ class WallpaperViewController: UIViewController {
     }
     
     func currentImage() {
+        UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)), nil)
+    }
+
+    func imageSaved(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: CGContext?){
         if PHPhotoLibrary.authorizationStatus() == .authorized{
-            AppDelegate.instance().currentImage = self.imageView.image
-            UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)), nil)
+            if didFinishSavingWithError == nil {
+                AppDelegate.instance().currentImage = self.imageView.image
+                showSavedView()
+            }else {
+                let alert = UIAlertController(title: "Error", message: "Something went wrong and your wallpaper was not saved. Please try again", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                alert.addAction(action)
+                self.present(alert, animated: true, completion: nil)
+            }
         }else {
             PHPhotoLibrary.requestAuthorization({ (status) in
                 let alertView = UIAlertController(title: "No Access", message: "Wallpapers can't be saved because access to photos was denied. To give access press Settings and turn ON the switcher on photos", preferredStyle: .alert)
@@ -70,17 +81,6 @@ class WallpaperViewController: UIViewController {
                 alertView.addAction(okAction)
                 self.present(alertView, animated: true, completion: nil)
             })
-        }
-    }
-
-    func imageSaved(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: CGContext?){
-        if didFinishSavingWithError == nil {
-            showSavedView()
-        }else {
-            let alert = UIAlertController(title: "Error", message: "Something went wrong and your wallpaper was not saved. Please try again", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(action)
-            self.present(alert, animated: true, completion: nil)
         }
     }
     
