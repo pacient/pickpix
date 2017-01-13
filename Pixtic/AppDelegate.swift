@@ -41,7 +41,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     //MARK: GET request calls
     func getWallpapersFromDatabase() {
         if isInternetAvailable(){
-            ref.child(UIDevice.current.modelName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            ref.child("iphone6").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
                 
                 if let categories = snapshot.value as? [String : AnyObject] {
                     self.images = [Photo]()
@@ -82,7 +82,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if categoryName == "All" {
                 getWallpapersFromDatabase()
             }else {
-                ref.child(UIDevice.current.modelName).child(categoryName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+                ref.child("iphone6").child(categoryName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
                     if let wallpapers = snapshot.value as? [String : AnyObject] {
                         self.images = [Photo]()
                         for (id,url) in wallpapers {

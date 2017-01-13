@@ -71,7 +71,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: GET request calls
     func retrieveCategories() {
         
-        self.ref.child(UIDevice.current.modelName).observeSingleEvent(of: .value, with: { (snapshot) in
+        self.ref.child("iphone6").observeSingleEvent(of: .value, with: { (snapshot) in
             var totalCount = 0
             if let cats = snapshot.value as? [String : AnyObject] {
                 self.categories = [Category]()
