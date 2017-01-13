@@ -128,10 +128,10 @@
 			isa = PBXGroup;
 			children = (
 				38607B101E25733E007D05C8 /* Header.xib */,
+				383AA55C1E21C6D60066BE3D /* Models */,
 				38607B121E26498B007D05C8 /* Extensions */,
 				38FF37F21E25345D0020CB7A /* Custom Cells */,
 				384530711E22B2680036C4FC /* Storyboards */,
-				383AA55C1E21C6D60066BE3D /* Models */,
 				383AA55B1E21C6BF0066BE3D /* VIew Controllers */,
 				38FEF69D1E1EF95000727681 /* AppDelegate.swift */,
 				38FEF6A41E1EF95000727681 /* Assets.xcassets */,
@@ -422,6 +422,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nunev.Pixtic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -437,6 +438,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.nunev.Pixtic;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

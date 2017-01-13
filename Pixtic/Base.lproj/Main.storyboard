@@ -20,18 +20,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ljp-3F-EIW">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ljp-3F-EIW">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             </imageView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cbC-xf-OYC">
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="cbC-xf-OYC">
                                 <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="8Eh-x0-LD6"/>
+                            <constraint firstItem="cbC-xf-OYC" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Cbh-eS-1Nh"/>
                             <constraint firstAttribute="trailing" secondItem="Ljp-3F-EIW" secondAttribute="trailing" id="GEy-5t-Kq5"/>
+                            <constraint firstItem="cbC-xf-OYC" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MGK-FD-Vm2"/>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="kL5-H2-ryp"/>
                             <constraint firstItem="Ljp-3F-EIW" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="xhd-u9-eUn"/>
                         </constraints>

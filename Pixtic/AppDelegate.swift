@@ -40,18 +40,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     //MARK: GET request calls
     func getWallpapersFromDatabase() {
-        
         if isInternetAvailable(){
-            ref.child(UIDevice.current.modelName).child("All").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+            ref.child(UIDevice.current.modelName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
                 
-                if let wallpapers = snapshot.value as? [String : AnyObject] {
+                if let categories = snapshot.value as? [String : AnyObject] {
                     self.images = [Photo]()
-                    for (id,url) in wallpapers {
-                        if id != "icon"{
-                            let photo = Photo()
-                            photo.photoID = id
-                            photo.imageURL = url as! String
-                            self.images.append(photo)
+                    for (_, wallpapers) in categories{
+                        if let imgs = wallpapers as? [String : String]{
+                            for (id,url) in imgs {
+                                if id != "icon"{
+                                    let photo = Photo()
+                                    photo.photoID = id
+                                    photo.imageURL = url
+                                    self.images.append(photo)
+                                }
+                            }
                         }
                     }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
@@ -59,27 +62,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             })
             ref.removeAllObservers()
         }else{
-            print("no internet")
+            let alert = UIAlertController(title: "No Internet", message: "You don't have internet connection. Please Check your internet connection and try again", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(action)
+            
+            self.window!.rootViewController!.present(alert, animated: true, completion: nil)
         }
     }
     
     func getWallpapers(from categoryName: String){
-        ref.child(UIDevice.current.modelName).child(categoryName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-            
-            if let wallpapers = snapshot.value as? [String : AnyObject] {
-                self.images = [Photo]()
-                for (id,url) in wallpapers {
-                    if id != "icon" {
-                        let photo = Photo()
-                        photo.photoID = id
-                        photo.imageURL = url as! String
-                        self.images.append(photo)
+        if isInternetAvailable(){
+            if categoryName == "All" {
+                getWallpapersFromDatabase()
+            }else {
+                ref.child(UIDevice.current.modelName).child(categoryName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
+                    if let wallpapers = snapshot.value as? [String : AnyObject] {
+                        self.images = [Photo]()
+                        for (id,url) in wallpapers {
+                            if id != "icon" {
+                                let photo = Photo()
+                                photo.photoID = id
+                                photo.imageURL = url as! String
+                                self.images.append(photo)
+                            }
+                        }
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
                     }
-                }
-                NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
+                })
+                ref.removeAllObservers()
             }
-        })
-        ref.removeAllObservers()
+        }else{
+            let alert = UIAlertController(title: "No Internet", message: "You don't have internet connection. Please Check your internet connection and try again", preferredStyle: .alert)
+            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+            alert.addAction(action)
+            
+            self.window!.rootViewController!.present(alert, animated: true, completion: nil)
+        }
     }
     
     //MARK: Application Functions
