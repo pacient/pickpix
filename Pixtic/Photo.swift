@@ -12,4 +12,5 @@ class Photo: NSObject {
 
     var photoID: String!
     var imageURL: String!
+    var date: Date!
 }

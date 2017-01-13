@@ -46,14 +46,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let categories = snapshot.value as? [String : AnyObject] {
                     self.images = [Photo]()
                     for (_, wallpapers) in categories{
-                        if let imgs = wallpapers as? [String : String]{
+                        if let imgs = wallpapers as? [String : AnyObject]{
                             for (id,url) in imgs {
                                 if id != "icon"{
                                     let photo = Photo()
                                     photo.photoID = id
-                                    photo.imageURL = url
+                                    photo.imageURL = url["imageURL"] as! String
+                                    let dateStr = url["date"] as! String
+                                    let dateFmt = DateFormatter()
+                                    dateFmt.timeZone = TimeZone.current
+                                    dateFmt.dateFormat = "dd-MM-yyyy"
+                                    photo.date = dateFmt.date(from: dateStr)
                                     self.images.append(photo)
                                 }
+                                let sorted = self.images.sorted { $0.date > $1.date }
+                                self.images = sorted
                             }
                         }
                     }
@@ -82,7 +89,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             if id != "icon" {
                                 let photo = Photo()
                                 photo.photoID = id
-                                photo.imageURL = url as! String
+                                photo.imageURL = url["imageURL"] as! String
+                                let dateStr = url["date"] as! String
+                                let dateFmt = DateFormatter()
+                                dateFmt.timeZone = TimeZone.current
+                                dateFmt.dateFormat = "dd-MM-yyyy"
+                                photo.date = dateFmt.date(from: dateStr)
                                 self.images.append(photo)
                             }
                         }
