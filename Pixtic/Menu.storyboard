@@ -74,7 +74,7 @@
                                         <rect key="frame" x="0.0" y="28" width="375" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ML6-gP-cYA" id="j6h-9b-36G">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="85"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="84"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -83,7 +83,7 @@
                                         <rect key="frame" x="0.0" y="113" width="375" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="U6z-D0-67x" id="Bah-RK-IPh">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="99"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gsx-MF-3Gy">
@@ -129,23 +129,48 @@
                                     <outlet property="delegate" destination="5v2-g7-T0H" id="8Fc-lq-YCx"/>
                                 </connections>
                             </tableView>
+                            <view alpha="0.80000000000000004" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8Fs-Iz-PJn">
+                                <rect key="frame" x="137.5" y="259" width="100" height="100"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Wnb-Mh-CNV"/>
+                                    <constraint firstAttribute="height" constant="100" id="nQ5-1y-BC0"/>
+                                </constraints>
+                            </view>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="vQ4-5J-OwZ">
+                                <rect key="frame" x="169" y="291" width="37" height="37"/>
+                            </activityIndicatorView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Loading" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IRH-wC-HgB">
+                                <rect key="frame" x="158.5" y="336" width="58" height="19.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="IRH-wC-HgB" firstAttribute="top" secondItem="vQ4-5J-OwZ" secondAttribute="bottom" constant="8" id="0L8-PA-4Ns"/>
+                            <constraint firstItem="IRH-wC-HgB" firstAttribute="centerX" secondItem="Bjc-IC-736" secondAttribute="centerX" id="1uS-e1-a59"/>
+                            <constraint firstItem="vQ4-5J-OwZ" firstAttribute="centerY" secondItem="Bjc-IC-736" secondAttribute="centerY" id="2x8-oW-S0Z"/>
                             <constraint firstItem="wRg-1l-sg8" firstAttribute="top" secondItem="fm7-bd-500" secondAttribute="bottom" id="77s-Pd-DfT"/>
                             <constraint firstItem="Lxo-xJ-2Uz" firstAttribute="top" secondItem="wRg-1l-sg8" secondAttribute="bottom" id="EH5-3M-ZEA"/>
                             <constraint firstItem="fm7-bd-500" firstAttribute="leading" secondItem="Bjc-IC-736" secondAttribute="leading" id="HYf-H2-4d2"/>
                             <constraint firstItem="S7n-kj-LdZ" firstAttribute="top" secondItem="Bjc-IC-736" secondAttribute="top" id="IHr-lp-XF5"/>
                             <constraint firstItem="S7n-kj-LdZ" firstAttribute="leading" secondItem="Bjc-IC-736" secondAttribute="leading" id="N68-ba-1Sy"/>
+                            <constraint firstItem="8Fs-Iz-PJn" firstAttribute="centerX" secondItem="Bjc-IC-736" secondAttribute="centerX" id="N9L-Ds-kW5"/>
                             <constraint firstAttribute="trailing" secondItem="fm7-bd-500" secondAttribute="trailing" id="S4b-No-4n7"/>
                             <constraint firstItem="wRg-1l-sg8" firstAttribute="leading" secondItem="Bjc-IC-736" secondAttribute="leading" id="Zeh-Zw-Tdh"/>
                             <constraint firstAttribute="trailing" secondItem="S7n-kj-LdZ" secondAttribute="trailing" id="ar2-V5-aLg"/>
+                            <constraint firstItem="8Fs-Iz-PJn" firstAttribute="centerY" secondItem="Bjc-IC-736" secondAttribute="centerY" id="avX-G2-RGa"/>
                             <constraint firstItem="fm7-bd-500" firstAttribute="top" secondItem="4fj-j4-19K" secondAttribute="bottom" id="cQm-5c-mm9"/>
+                            <constraint firstItem="vQ4-5J-OwZ" firstAttribute="centerX" secondItem="Bjc-IC-736" secondAttribute="centerX" id="xg9-F3-EIg"/>
                             <constraint firstAttribute="trailing" secondItem="wRg-1l-sg8" secondAttribute="trailing" id="xvi-zb-pvT"/>
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Categories" image="noCate" selectedImage="categories" id="JA6-qW-WN6"/>
                     <connections>
+                        <outlet property="actInd" destination="vQ4-5J-OwZ" id="ymr-GU-wkJ"/>
+                        <outlet property="actView" destination="8Fs-Iz-PJn" id="zoW-3F-oXI"/>
                         <outlet property="tableview" destination="wRg-1l-sg8" id="GoJ-IL-nbK"/>
                     </connections>
                 </viewController>

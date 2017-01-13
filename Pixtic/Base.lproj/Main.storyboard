@@ -49,7 +49,7 @@
         <!--Page View Controller-->
         <scene sceneID="3hA-LP-YA2">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="scp-ps-mbv" customClass="PageViewController" customModule="Pixtic" customModuleProvider="target" sceneMemberID="viewController"/>
+                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" pageSpacing="20" navigationOrientation="horizontal" spineLocation="none" id="scp-ps-mbv" customClass="PageViewController" customModule="Pixtic" customModuleProvider="target" sceneMemberID="viewController"/>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2bX-Dc-3yd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="938" y="82"/>

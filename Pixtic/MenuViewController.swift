@@ -14,6 +14,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
 
     
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var actView: UIView!
+    @IBOutlet weak var actInd: UIActivityIndicatorView!
     
     var categories: [Category]?
     var ref: FIRDatabaseReference!
@@ -21,6 +23,8 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        actView.layer.masksToBounds = true
+        actView.layer.cornerRadius = 10
         ref = FIRDatabase.database().reference()
 
         UIApplication.shared.setStatusBarHidden(false, with: .slide)
@@ -70,7 +74,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     //MARK: GET request calls
     func retrieveCategories() {
-        
+        self.actView.isHidden = false
         self.ref.child("iphone6").observeSingleEvent(of: .value, with: { (snapshot) in
             var totalCount = 0
             if let cats = snapshot.value as? [String : AnyObject] {
@@ -93,10 +97,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             let sorted = self.categories?.sorted { $0.name < $1.name }
             self.categories = sorted
             self.tableview.reloadData()
-            let blurEffect = UIBlurEffect(style: .light)
-            let blur = UIVisualEffectView(effect: blurEffect)
-            blur.frame = self.view.frame
-            self.tableview.backgroundView?.addSubview(blur)
+            self.actView.isHidden = true
         })
     }
     
