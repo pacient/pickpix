@@ -47,7 +47,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         firstViewController.photo = AppDelegate.instance().images.first!
         let url = URL(string: AppDelegate.instance().images.first!.imageURL!)!
         let resource = ImageResource(downloadURL: url, cacheKey: AppDelegate.instance().images.first!.photoID!)
-        firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholderLoading"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
+        firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder-1"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
             if img != nil {
                 firstViewController.actIndc.stopAnimating()
                 AppDelegate.instance().addButtonView()
@@ -71,7 +71,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                     nextViewController.photo = AppDelegate.instance().images[currentIndex + 1]
                     let url = URL(string: AppDelegate.instance().images[currentIndex + 1].imageURL)
                     let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex + 1].photoID!)
-                    nextViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholderLoading"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
+                    nextViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder-1"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
                         if img != nil {
                             nextViewController.actIndc.stopAnimating()
                             self.nextCounter += 1
@@ -107,7 +107,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                     let url = URL(string: AppDelegate.instance().images[currentIndex - 1].imageURL)
                     let resource = ImageResource(downloadURL: url!, cacheKey: AppDelegate.instance().images[currentIndex - 1].photoID!)
                     previousViewController.imageView.contentMode = .scaleToFill
-                    previousViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholderLoading"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
+                    previousViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder-1"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
                         if img != nil {
                             previousViewController.actIndc.stopAnimating()
                             self.previousCounter += 1

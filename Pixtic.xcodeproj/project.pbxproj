@@ -415,6 +415,7 @@
 			baseConfigurationReference = 998B17B1A3CD2BE6C4C1C23F /* Pods-Pixtic.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = TPWG8G6ELX;
 				INFOPLIST_FILE = Pixtic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -431,6 +432,7 @@
 			baseConfigurationReference = 21A28905E478796EB5A5E166 /* Pods-Pixtic.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				DEVELOPMENT_TEAM = TPWG8G6ELX;
 				INFOPLIST_FILE = Pixtic/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
