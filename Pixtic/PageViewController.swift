@@ -38,15 +38,18 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         
         NotificationCenter.default.addObserver(self, selector: #selector(getFirstVC), name: NSNotification.Name(rawValue: "getVC"), object: nil)
         
+        
+        
     }
     
-    func getFirstVC() {
+    func getFirstVC(notification: Notification) {
+        let atIndex = notification.object as! Int
         let firstViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
         firstViewController.loadView()
         firstViewController.actIndc.startAnimating()
-        firstViewController.photo = AppDelegate.instance().images.first!
-        let url = URL(string: AppDelegate.instance().images.first!.imageURL!)!
-        let resource = ImageResource(downloadURL: url, cacheKey: AppDelegate.instance().images.first!.photoID!)
+        firstViewController.photo = AppDelegate.instance().images[atIndex]
+        let url = URL(string: AppDelegate.instance().images[atIndex].imageURL!)!
+        let resource = ImageResource(downloadURL: url, cacheKey: AppDelegate.instance().images[atIndex].photoID!)
         firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder-1"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
             if img != nil {
                 firstViewController.actIndc.stopAnimating()
@@ -55,7 +58,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
                 
             }
         })
-        self.setViewControllers([firstViewController], direction: .forward, animated: true, completion: nil)
+        self.setViewControllers([firstViewController], direction: .forward, animated: false, completion: nil)
     }
     
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {

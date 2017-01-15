@@ -17,6 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var images: [Photo]!
     var currentImage: UIImage!
     let view = UIView()
+    let topView = UIView()
     let bannerAd = GADBannerView()
     
     var ref:FIRDatabaseReference!
@@ -64,7 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: 0)
                 }
             })
             ref.removeAllObservers()
@@ -98,7 +99,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 self.images.append(photo)
                             }
                         }
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: nil)
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: 0)
                     }
                 })
                 ref.removeAllObservers()
@@ -188,11 +189,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 view.addSubview(shareButton)
                 view.addSubview(bannerAd)
                 
+                
+                //create the top buttons
+                topView.backgroundColor = UIColor.clear
+                topView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: 70)
+                
+                //Collection view button
+                let collectionButton = UIButton()
+                collectionButton.addTarget(self, action: #selector(openCollectionView), for: .touchUpInside)
+                collectionButton.setImage(#imageLiteral(resourceName: "collectionView"), for: .normal)
+                collectionButton.translatesAutoresizingMaskIntoConstraints = false
+                
+                
+                let trailingCollection = NSLayoutConstraint(item: collectionButton, attribute: .trailing, relatedBy: .equal, toItem: topView, attribute: .trailing, multiplier: 1, constant: -16)
+                let centerCollection = NSLayoutConstraint(item: collectionButton, attribute: .centerY, relatedBy: .equal, toItem: topView, attribute: .centerY, multiplier: 1, constant: 0)
+                let collectionHeight = NSLayoutConstraint(item: collectionButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35)
+                let collectionWidth = NSLayoutConstraint(item: collectionButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35)
+                
+                topView.addConstraints([trailingCollection,centerCollection,collectionWidth,collectionHeight])
+                
+                topView.addSubview(collectionButton)
+                
+                self.window!.addSubview(topView)
                 self.window!.addSubview(view)
                 self.window!.addSubview(bannerAd)
                 self.added = true
             }
         }
+    }
+    
+    func openCollectionView() {
+        
+        let collectionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "collectionVC")
+        
+        self.showButtons(show: false, moveBannerAd: true)
+        UIApplication.shared.setStatusBarHidden(false, with: .slide)
+        self.window!.rootViewController!.present(collectionVC, animated: true, completion: nil)
     }
     
     func toogleMenu() {
@@ -226,6 +258,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if show {
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.frame = CGRect(x: 0, y: window.frame.height - 120, width: window.frame.width, height: 70)
+                    self.topView.frame = CGRect(x: 0, y: 0, width: window.frame.width, height: 70)
                     if moveBannerAd{
                         self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
                     }
@@ -233,6 +266,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }else{
                 UIView.animate(withDuration: 0.5, animations: {
                     self.view.frame = CGRect(x: 0, y: window.frame.height, width: window.frame.width, height: 70)
+                    self.topView.frame = CGRect(x: 0, y: -70, width: window.frame.width, height: 70)
                     if moveBannerAd {
                         self.bannerAd.frame = CGRect(x: 0, y: self.view.frame.origin.y + 70, width: window.frame.width, height: 50)
                     }

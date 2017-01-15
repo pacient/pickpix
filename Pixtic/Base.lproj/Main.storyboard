@@ -54,5 +54,103 @@
             </objects>
             <point key="canvasLocation" x="938" y="82"/>
         </scene>
+        <!--Item 2-->
+        <scene sceneID="kiE-3i-9Q1">
+            <objects>
+                <viewController storyboardIdentifier="collectionVC" id="1yY-nP-E0M" customClass="CollectionViewController" customModule="Pixtic" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="gsG-p2-ENt"/>
+                        <viewControllerLayoutGuide type="bottom" id="LbL-v4-iIF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Jeg-Er-8eX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3E1-Ph-1yo">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="20"/>
+                                <color key="backgroundColor" red="0.34901960784313724" green="0.34901960784313724" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="20" id="le5-DE-aCd"/>
+                                </constraints>
+                            </view>
+                            <navigationBar contentMode="scaleToFill" barStyle="black" translatesAutoresizingMaskIntoConstraints="NO" id="FFp-Se-qQs">
+                                <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="bpj-4n-R6v"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="PickPix" id="oVO-mF-uju">
+                                        <barButtonItem key="leftBarButtonItem" title="&lt; Back" id="PEN-mQ-mh3">
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <connections>
+                                                <action selector="backPressed:" destination="1yY-nP-E0M" id="XIj-w4-czc"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="H3h-SM-ebc">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="h8A-SX-ghw">
+                                    <size key="itemSize" width="97" height="151"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="HN4-hf-GZg" customClass="WallpaperCell" customModule="Pixtic" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="124" height="150"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="124" height="150"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfL-Vm-18f">
+                                                    <rect key="frame" x="0.0" y="0.0" width="124" height="150"/>
+                                                </imageView>
+                                            </subviews>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="yfL-Vm-18f" secondAttribute="trailing" id="2ZN-ZG-Lg5"/>
+                                            <constraint firstItem="yfL-Vm-18f" firstAttribute="leading" secondItem="HN4-hf-GZg" secondAttribute="leading" id="fft-uG-w7P"/>
+                                            <constraint firstAttribute="bottom" secondItem="yfL-Vm-18f" secondAttribute="bottom" id="rjR-HH-PGT"/>
+                                            <constraint firstItem="yfL-Vm-18f" firstAttribute="top" secondItem="HN4-hf-GZg" secondAttribute="top" id="x0q-06-Hoj"/>
+                                        </constraints>
+                                        <size key="customSize" width="124" height="150"/>
+                                        <connections>
+                                            <outlet property="wallpaperImage" destination="yfL-Vm-18f" id="o52-Eh-nPU"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="1yY-nP-E0M" id="5um-Io-iLZ"/>
+                                    <outlet property="delegate" destination="1yY-nP-E0M" id="A1T-7C-jy2"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="LbL-v4-iIF" firstAttribute="top" secondItem="H3h-SM-ebc" secondAttribute="bottom" id="43u-bS-X1s"/>
+                            <constraint firstItem="FFp-Se-qQs" firstAttribute="top" secondItem="gsG-p2-ENt" secondAttribute="bottom" id="7Q1-yj-vMx"/>
+                            <constraint firstAttribute="trailing" secondItem="3E1-Ph-1yo" secondAttribute="trailing" id="A37-rL-WiU"/>
+                            <constraint firstItem="3E1-Ph-1yo" firstAttribute="leading" secondItem="Jeg-Er-8eX" secondAttribute="leading" id="H2b-hX-tuO"/>
+                            <constraint firstAttribute="trailing" secondItem="H3h-SM-ebc" secondAttribute="trailing" id="J7x-MP-fZp"/>
+                            <constraint firstItem="H3h-SM-ebc" firstAttribute="top" secondItem="FFp-Se-qQs" secondAttribute="bottom" id="Prs-aP-z3d"/>
+                            <constraint firstAttribute="trailing" secondItem="FFp-Se-qQs" secondAttribute="trailing" id="fjk-kv-CEs"/>
+                            <constraint firstItem="3E1-Ph-1yo" firstAttribute="top" secondItem="Jeg-Er-8eX" secondAttribute="top" id="iW1-SG-s8R"/>
+                            <constraint firstItem="FFp-Se-qQs" firstAttribute="leading" secondItem="Jeg-Er-8eX" secondAttribute="leading" id="o2H-Hv-Krq"/>
+                            <constraint firstItem="H3h-SM-ebc" firstAttribute="leading" secondItem="Jeg-Er-8eX" secondAttribute="leading" id="qiF-ew-6EO"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Item 2" id="YCq-Ku-ao9"/>
+                    <connections>
+                        <outlet property="collectionView" destination="H3h-SM-ebc" id="VKT-Gf-ovX"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m5g-Nv-Ndh" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-767.20000000000005" y="80.50974512743629"/>
+        </scene>
     </scenes>
 </document>
