@@ -37,19 +37,18 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         interstitial = createAndLoadInterstitial()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getFirstVC), name: NSNotification.Name(rawValue: "getVC"), object: nil)
-        
-        
-        
     }
     
     func getFirstVC(notification: Notification) {
-        let atIndex = notification.object as! Int
+        let userInfo = notification.object as! [String : Any]
+        let atIndex = userInfo["atIndex"] as! Int
+        let isFavourite = userInfo["favourites"] as! Bool
         let firstViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
         firstViewController.loadView()
         firstViewController.actIndc.startAnimating()
-        firstViewController.photo = AppDelegate.instance().images[atIndex]
-        let url = URL(string: AppDelegate.instance().images[atIndex].imageURL!)!
-        let resource = ImageResource(downloadURL: url, cacheKey: AppDelegate.instance().images[atIndex].photoID!)
+        firstViewController.photo = isFavourite ? AppDelegate.instance().getStoredWallpapers()[atIndex] : AppDelegate.instance().images[atIndex]
+        let url = URL(string: firstViewController.photo.imageURL!)!
+        let resource = ImageResource(downloadURL: url, cacheKey: firstViewController.photo.photoID!)
         firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder-1"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
             if img != nil {
                 firstViewController.actIndc.stopAnimating()

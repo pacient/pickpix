@@ -15,9 +15,21 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var images: [Photo]?
+    var isFavourite = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         
+        if images == nil {
+            self.images = AppDelegate.instance().getStoredWallpapers()
+            self.isFavourite = true
+            collectionView.reloadData()
+        }
     }
     
     // MARK: UICollectionViewDataSource
@@ -28,13 +40,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return AppDelegate.instance().images.count
+        return self.images?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! WallpaperCell
         
-        let resource = ImageResource(downloadURL: URL(string: AppDelegate.instance().images[indexPath.item].imageURL)!, cacheKey: AppDelegate.instance().images[indexPath.item].photoID)
+        let resource = ImageResource(downloadURL: URL(string: (self.images?[indexPath.item].imageURL)!)!, cacheKey: self.images?[indexPath.item].photoID)
         cell.wallpaperImage.kf.setImage(with: resource, placeholder: nil, options: [], progressBlock: nil, completionHandler: nil)
         
         return cell
@@ -53,7 +65,8 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: indexPath.item)
+        let userInfo = ["atIndex" : indexPath.item, "favourites" : isFavourite] as [String : Any]
+        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: userInfo)
         self.dismiss(animated: true) {
             UIApplication.shared.setStatusBarHidden(true, with: .slide)
         }

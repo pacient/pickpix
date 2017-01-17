@@ -30,6 +30,8 @@ class WallpaperViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(self.currentImage), name: NSNotification.Name(rawValue: "getImage"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.getImage), name: NSNotification.Name(rawValue: "currentImage"), object: nil)
 
+        AppDelegate.instance().currentWallpaper = self.photo
+        AppDelegate.instance().checkIfFavourite()
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(doubleTapped))
         tap.numberOfTapsRequired = 2

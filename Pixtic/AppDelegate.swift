@@ -18,7 +18,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var currentImage: UIImage!
     let view = UIView()
     let topView = UIView()
+    let favButton = UIButton()
     let bannerAd = GADBannerView()
+    
+    var isFavourite = false
+    var currentWallpaper: Photo!
     
     var ref:FIRDatabaseReference!
     var added = false
@@ -65,7 +69,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             }
                         }
                     }
-                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: 0)
+                    let userInfo = ["atIndex" : 0, "favourites" : false] as [String : Any]
+                    NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: userInfo)
                 }
             })
             ref.removeAllObservers()
@@ -99,7 +104,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 self.images.append(photo)
                             }
                         }
-                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: 0)
+                        let userInfo = ["atIndex" : 0, "favourites" : false] as [String : Any]
+                        NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: userInfo)
                     }
                 })
                 ref.removeAllObservers()
@@ -200,15 +206,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 collectionButton.setImage(#imageLiteral(resourceName: "collectionView"), for: .normal)
                 collectionButton.translatesAutoresizingMaskIntoConstraints = false
                 
-                
-                let trailingCollection = NSLayoutConstraint(item: collectionButton, attribute: .trailing, relatedBy: .equal, toItem: topView, attribute: .trailing, multiplier: 1, constant: -16)
+                let trailingCollection = NSLayoutConstraint(item: collectionButton, attribute: .trailing, relatedBy: .equal, toItem: self.favButton, attribute: .leading, multiplier: 1, constant: -8)
                 let centerCollection = NSLayoutConstraint(item: collectionButton, attribute: .centerY, relatedBy: .equal, toItem: topView, attribute: .centerY, multiplier: 1, constant: 0)
                 let collectionHeight = NSLayoutConstraint(item: collectionButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35)
                 let collectionWidth = NSLayoutConstraint(item: collectionButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35)
                 
-                topView.addConstraints([trailingCollection,centerCollection,collectionWidth,collectionHeight])
+                //Favourite button
+                self.favButton.addTarget(self, action: #selector(favPressed), for: .touchUpInside)
+                self.checkIfFavourite()
+                self.favButton.translatesAutoresizingMaskIntoConstraints = false
+                
+                let favTrailing = NSLayoutConstraint(item: self.favButton, attribute: .trailing, relatedBy: .equal, toItem: topView, attribute: .trailing, multiplier: 1, constant: -16)
+                let centerFav = NSLayoutConstraint(item: self.favButton, attribute: .centerY, relatedBy: .equal, toItem: topView, attribute: .centerY, multiplier: 1, constant: 0)
+                let favHeight = NSLayoutConstraint(item: self.favButton, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35)
+                let favWidth = NSLayoutConstraint(item: self.favButton, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 35)
+                
+                topView.addConstraints([trailingCollection,centerCollection,collectionWidth,collectionHeight,favWidth,favHeight,centerFav,favTrailing])
                 
                 topView.addSubview(collectionButton)
+                topView.addSubview(self.favButton)
                 
                 self.window!.addSubview(topView)
                 self.window!.addSubview(view)
@@ -218,9 +234,73 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
     
+    func favPressed() {
+        if !isFavourite{
+            if let photo: Photo = self.currentWallpaper{
+                var storedWallpapers = getStoredWallpapers()
+                
+                storedWallpapers.append(photo)
+                let dataWp = NSKeyedArchiver.archivedData(withRootObject: storedWallpapers)
+                UserDefaults.standard.set(dataWp, forKey: "savedWallpaper")
+                UserDefaults.standard.synchronize()
+                checkIfFavourite()
+            }
+        }else {
+            if let photo = self.currentWallpaper {
+                var storedWallpapers = getStoredWallpapers()
+                for (index,each) in storedWallpapers.enumerated() {
+                    if each.photoID == photo.photoID {
+                        storedWallpapers.remove(at: index)
+                        break
+                    }
+                }
+                
+                UserDefaults.standard.set(NSKeyedArchiver.archivedData(withRootObject: storedWallpapers), forKey: "savedWallpaper")
+                UserDefaults.standard.synchronize()
+                checkIfFavourite()
+            }
+            
+        }
+    }
+    
+    func getStoredWallpapers() -> [Photo] {
+        var storedWallpapers: [Photo]
+        if let storedWallpapersData = UserDefaults.standard.object(forKey: "savedWallpaper") as? Data {
+            storedWallpapers = NSKeyedUnarchiver.unarchiveObject(with: storedWallpapersData) as! [Photo]
+        }else {
+            storedWallpapers = [Photo]()
+        }
+        return storedWallpapers
+    }
+    
+    func checkIfFavourite() {
+        var storedWallpapers: [Photo]
+        if let storedWallpapersData = UserDefaults.standard.object(forKey: "savedWallpaper") as? Data {
+            storedWallpapers = NSKeyedUnarchiver.unarchiveObject(with: storedWallpapersData) as! [Photo]
+            if storedWallpapers.count > 0 {
+                for each in storedWallpapers{
+                    if each.photoID! == self.currentWallpaper.photoID{
+                        self.isFavourite = true
+                        break
+                    }else{
+                        self.isFavourite = false
+                    }
+                }
+            }else {
+                self.isFavourite = false
+            }
+        }
+        if isFavourite {
+            self.favButton.setImage(#imageLiteral(resourceName: "favouriteSelected-1"), for: .normal)
+        }else{
+            self.favButton.setImage(#imageLiteral(resourceName: "favourite-1"), for: .normal)
+        }
+    }
+    
     func openCollectionView() {
         
-        let collectionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "collectionVC")
+        let collectionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
+        collectionVC.images = self.images
         
         self.showButtons(show: false, moveBannerAd: true)
         UIApplication.shared.setStatusBarHidden(false, with: .slide)
