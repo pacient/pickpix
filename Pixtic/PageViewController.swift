@@ -39,6 +39,13 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         interstitial = createAndLoadInterstitial()
         
         NotificationCenter.default.addObserver(self, selector: #selector(getFirstVC), name: NSNotification.Name(rawValue: "getVC"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(noInternet), name: NSNotification.Name(rawValue: "noInternet"), object: nil)
+    }
+    
+    func noInternet() {
+        let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "noIntVC")
+        vc.loadView()
+        self.present(vc, animated: false, completion: nil)
     }
     
     func getFirstVC(notification: Notification) {

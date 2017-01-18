@@ -70,16 +70,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     }
                     let userInfo = ["atIndex" : 0, "favourites" : false] as [String : Any]
+                    self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: userInfo)
                 }
             })
             ref.removeAllObservers()
         }else{
-            let alert = UIAlertController(title: "No Internet", message: "You don't have internet connection. Please Check your internet connection and try again", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.window!.rootViewController!.present(alert, animated: true, completion: nil)
+            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noInternet"), object: nil)
+            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "noIntVC")
+            self.window?.rootViewController = vc
         }
     }
     

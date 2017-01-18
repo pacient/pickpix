@@ -225,16 +225,18 @@
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Wd-7A-5Fr">
                                 <rect key="frame" x="0.0" y="64" width="375" height="554"/>
                                 <subviews>
-                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoInternet" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-vm-xtL">
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="NoInternet" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-vm-xtL">
                                         <rect key="frame" x="0.0" y="112" width="375" height="330"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="330" id="L9F-ng-a7F"/>
                                         </constraints>
                                     </imageView>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYo-pp-Kmg">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qYo-pp-Kmg">
                                         <rect key="frame" x="143" y="450" width="88" height="30"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.34901960780000002" green="0.34901960780000002" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="88" id="VL1-ly-RyR"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                         <state key="normal" title="Try Again!">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -252,9 +254,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="qYo-pp-Kmg" firstAttribute="centerX" secondItem="1Wd-7A-5Fr" secondAttribute="centerX" id="Qmc-e1-eFb"/>
                                     <constraint firstAttribute="trailing" secondItem="s1E-vm-xtL" secondAttribute="trailing" id="dQk-bs-6P0"/>
                                     <constraint firstItem="s1E-vm-xtL" firstAttribute="leading" secondItem="1Wd-7A-5Fr" secondAttribute="leading" id="ezq-UP-qjn"/>
                                     <constraint firstItem="s1E-vm-xtL" firstAttribute="centerY" secondItem="1Wd-7A-5Fr" secondAttribute="centerY" id="h43-iM-NFp"/>
+                                    <constraint firstItem="qYo-pp-Kmg" firstAttribute="top" secondItem="s1E-vm-xtL" secondAttribute="bottom" constant="8" id="pCP-25-Kpm"/>
                                 </constraints>
                             </view>
                         </subviews>

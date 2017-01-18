@@ -16,6 +16,7 @@
 		38607B161E265CDA007D05C8 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 38607B151E265CDA007D05C8 /* GoogleService-Info.plist */; };
 		386347811E2B9C2C004E43E2 /* CollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386347801E2B9C2C004E43E2 /* CollectionViewController.swift */; };
 		386347831E2B9D4E004E43E2 /* WallpaperCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 386347821E2B9D4E004E43E2 /* WallpaperCell.swift */; };
+		387E8ABD1E2FB3D90023DF99 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E8ABC1E2FB3D90023DF99 /* NoInternetViewController.swift */; };
 		38FEF69E1E1EF95000727681 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEF69D1E1EF95000727681 /* AppDelegate.swift */; };
 		38FEF6A01E1EF95000727681 /* WallpaperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */; };
 		38FEF6A31E1EF95000727681 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FEF6A11E1EF95000727681 /* Main.storyboard */; };
@@ -38,6 +39,7 @@
 		38607B151E265CDA007D05C8 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		386347801E2B9C2C004E43E2 /* CollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewController.swift; sourceTree = "<group>"; };
 		386347821E2B9D4E004E43E2 /* WallpaperCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WallpaperCell.swift; sourceTree = "<group>"; };
+		387E8ABC1E2FB3D90023DF99 /* NoInternetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
 		38FEF69A1E1EF95000727681 /* Pixtic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixtic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FEF69D1E1EF95000727681 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewController.swift; sourceTree = "<group>"; };
@@ -79,6 +81,7 @@
 				381DECE31E202C33004F719E /* PageViewController.swift */,
 				38FF37F51E2534A20020CB7A /* MenuViewController.swift */,
 				386347801E2B9C2C004E43E2 /* CollectionViewController.swift */,
+				387E8ABC1E2FB3D90023DF99 /* NoInternetViewController.swift */,
 			);
 			name = "VIew Controllers";
 			sourceTree = "<group>";
@@ -297,6 +300,7 @@
 				381DECE41E202C33004F719E /* PageViewController.swift in Sources */,
 				38FEF6A01E1EF95000727681 /* WallpaperViewController.swift in Sources */,
 				386347811E2B9C2C004E43E2 /* CollectionViewController.swift in Sources */,
+				387E8ABD1E2FB3D90023DF99 /* NoInternetViewController.swift in Sources */,
 				38FEF69E1E1EF95000727681 /* AppDelegate.swift in Sources */,
 				383B58FA1E26A08300DED73E /* Reachability.swift in Sources */,
 				38FF37F41E25347C0020CB7A /* CategoryCell.swift in Sources */,
