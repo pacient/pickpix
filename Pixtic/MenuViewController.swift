@@ -17,6 +17,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     @IBOutlet weak var actView: UIView!
     @IBOutlet weak var actInd: UIActivityIndicatorView!
     
+    @IBOutlet weak var noInternetView: UIView!
+    
+    
     var categories: [Category]?
     var ref: FIRDatabaseReference!
     
@@ -75,30 +78,37 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     //MARK: GET request calls
     func retrieveCategories() {
         self.actView.isHidden = false
-        self.ref.child("iphone6").observeSingleEvent(of: .value, with: { (snapshot) in
-            var totalCount = 0
-            if let cats = snapshot.value as? [String : AnyObject] {
-                self.categories = [Category]()
-                for (name,value) in cats {
+        if isInternetAvailable() {
+            self.noInternetView.isHidden = true
+            self.ref.child("iphone6").observeSingleEvent(of: .value, with: { (snapshot) in
+                var totalCount = 0
+                if let cats = snapshot.value as? [String : AnyObject] {
+                    self.categories = [Category]()
+                    for (name,value) in cats {
+                        let category = Category()
+                        category.name = name
+                        category.imagesCount = value.count - 1
+                        totalCount += category.imagesCount
+                        category.iconURL = value["icon"] as! String
+                        self.categories?.append(category)
+                    }
                     let category = Category()
-                    category.name = name
-                    category.imagesCount = value.count - 1
-                    totalCount += category.imagesCount
-                    category.iconURL = value["icon"] as! String
+                    category.name = "All"
+                    category.imagesCount = totalCount
+                    category.iconURL = "https://firebasestorage.googleapis.com/v0/b/pixtic-bb2a2.appspot.com/o/category%20icons%2FHiAppHere_com_kov.theme.lumos.png?alt=media&token=7f036abb-92d4-4153-94e7-2475d35c9a97"
                     self.categories?.append(category)
                 }
-                let category = Category()
-                category.name = "All"
-                category.imagesCount = totalCount
-                category.iconURL = "https://firebasestorage.googleapis.com/v0/b/pixtic-bb2a2.appspot.com/o/category%20icons%2FHiAppHere_com_kov.theme.lumos.png?alt=media&token=7f036abb-92d4-4153-94e7-2475d35c9a97"
-                self.categories?.append(category)
-            }
-            
-            let sorted = self.categories?.sorted { $0.name < $1.name }
-            self.categories = sorted
-            self.tableview.reloadData()
+                
+                let sorted = self.categories?.sorted { $0.name < $1.name }
+                self.categories = sorted
+                self.tableview.reloadData()
+                self.actView.isHidden = true
+            })
+        }else {
+            // Show no internet connection available
+            self.noInternetView.isHidden = false
             self.actView.isHidden = true
-        })
+        }
     }
     
     //MARK: Other methods
@@ -108,4 +118,9 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
             AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
         }
     }
+    
+    @IBAction func tryAgainPressed(_ sender: Any) {
+        retrieveCategories()
+    }
+    
 }
