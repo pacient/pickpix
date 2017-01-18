@@ -72,11 +72,18 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         }
     }
     
+    @IBAction func donePressed(_ sender: Any) {
+        self.dismissView()
+    }
+    
     @IBAction func backPressed(_ sender: Any) {
+        self.dismissView()
+    }
+    
+    func dismissView(){
         self.dismiss(animated: true) {
             AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
             UIApplication.shared.setStatusBarHidden(true, with: .slide)
         }
     }
-    
 }

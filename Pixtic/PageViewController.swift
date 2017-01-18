@@ -23,6 +23,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var previousCounter = 0
     var nextCounter = 0
     
+    var isFavourite: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,11 +44,14 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     func getFirstVC(notification: Notification) {
         let userInfo = notification.object as! [String : Any]
         let atIndex = userInfo["atIndex"] as! Int
-        let isFavourite = userInfo["favourites"] as! Bool
+        self.isFavourite = userInfo["favourites"] as! Bool
+        if self.isFavourite{
+            AppDelegate.instance().images = AppDelegate.instance().getStoredWallpapers()
+        }
         let firstViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
         firstViewController.loadView()
         firstViewController.actIndc.startAnimating()
-        firstViewController.photo = isFavourite ? AppDelegate.instance().getStoredWallpapers()[atIndex] : AppDelegate.instance().images[atIndex]
+        firstViewController.photo = AppDelegate.instance().images[atIndex]
         let url = URL(string: firstViewController.photo.imageURL!)!
         let resource = ImageResource(downloadURL: url, cacheKey: firstViewController.photo.photoID!)
         firstViewController.imageView.kf.setImage(with: resource, placeholder: #imageLiteral(resourceName: "placeholder-1"), options: [], progressBlock: nil, completionHandler: { (img, error, _, _) in
