@@ -26,7 +26,7 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
         super.viewWillAppear(animated)
         
         if images == nil {
-            self.images = AppDelegate.instance().getStoredWallpapers()
+            self.images = AppDelegate.instance().getStoredWallpapers().reversed()
             self.isFavourite = true
             collectionView.reloadData()
         }

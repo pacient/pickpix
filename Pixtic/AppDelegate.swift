@@ -70,7 +70,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         }
                     }
                     let userInfo = ["atIndex" : 0, "favourites" : false] as [String : Any]
-                    self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    if !(self.window?.rootViewController?.isKind(of: PageViewController.classForCoder()))!{
+                        self.window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
+                    }
                     NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: userInfo)
                 }
             })
@@ -103,6 +105,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                                 self.images.append(photo)
                             }
                         }
+                        let sorted = self.images.sorted { $0.date > $1.date }
+                        self.images = sorted
+                        
                         let userInfo = ["atIndex" : 0, "favourites" : false] as [String : Any]
                         NotificationCenter.default.post(name: NSNotification.Name(rawValue: "getVC"), object: userInfo)
                     }
@@ -301,9 +306,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let collectionVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "collectionVC") as! CollectionViewController
         collectionVC.images = self.images
         
-        self.showButtons(show: false, moveBannerAd: true)
         UIApplication.shared.setStatusBarHidden(false, with: .slide)
         self.window!.rootViewController!.present(collectionVC, animated: true, completion: nil)
+        self.showButtons(show: false, moveBannerAd: true)
     }
     
     func toogleMenu() {

@@ -53,7 +53,7 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         let atIndex = userInfo["atIndex"] as! Int
         self.isFavourite = userInfo["favourites"] as! Bool
         if self.isFavourite{
-            AppDelegate.instance().images = AppDelegate.instance().getStoredWallpapers()
+            AppDelegate.instance().images = AppDelegate.instance().getStoredWallpapers().reversed()
         }
         let firstViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "wallpaperVC") as! WallpaperViewController
         firstViewController.loadView()
