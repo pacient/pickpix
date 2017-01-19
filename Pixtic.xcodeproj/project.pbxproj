@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		381DECE41E202C33004F719E /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 381DECE31E202C33004F719E /* PageViewController.swift */; };
+		382AF42C1E30D961002B33B7 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 382AF42B1E30D961002B33B7 /* AboutViewController.swift */; };
 		383AA55A1E21AE710066BE3D /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383AA5591E21AE710066BE3D /* Photo.swift */; };
 		383B58FA1E26A08300DED73E /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 383B58F91E26A08300DED73E /* Reachability.swift */; };
 		384530701E22B2620036C4FC /* Menu.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3845306F1E22B2620036C4FC /* Menu.storyboard */; };
@@ -31,6 +32,7 @@
 /* Begin PBXFileReference section */
 		21A28905E478796EB5A5E166 /* Pods-Pixtic.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Pixtic.release.xcconfig"; path = "Pods/Target Support Files/Pods-Pixtic/Pods-Pixtic.release.xcconfig"; sourceTree = "<group>"; };
 		381DECE31E202C33004F719E /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
+		382AF42B1E30D961002B33B7 /* AboutViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		383AA5591E21AE710066BE3D /* Photo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		383B58F91E26A08300DED73E /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		3845306F1E22B2620036C4FC /* Menu.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Menu.storyboard; sourceTree = "<group>"; };
@@ -74,13 +76,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		382AF42D1E30D965002B33B7 /* MenuVCs */ = {
+			isa = PBXGroup;
+			children = (
+				382AF42B1E30D961002B33B7 /* AboutViewController.swift */,
+				38FF37F51E2534A20020CB7A /* MenuViewController.swift */,
+				386347801E2B9C2C004E43E2 /* CollectionViewController.swift */,
+			);
+			name = MenuVCs;
+			sourceTree = "<group>";
+		};
 		383AA55B1E21C6BF0066BE3D /* VIew Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				382AF42D1E30D965002B33B7 /* MenuVCs */,
 				38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */,
 				381DECE31E202C33004F719E /* PageViewController.swift */,
-				38FF37F51E2534A20020CB7A /* MenuViewController.swift */,
-				386347801E2B9C2C004E43E2 /* CollectionViewController.swift */,
 				387E8ABC1E2FB3D90023DF99 /* NoInternetViewController.swift */,
 			);
 			name = "VIew Controllers";
@@ -305,6 +316,7 @@
 				383B58FA1E26A08300DED73E /* Reachability.swift in Sources */,
 				38FF37F41E25347C0020CB7A /* CategoryCell.swift in Sources */,
 				38FF37F81E2544790020CB7A /* Category.swift in Sources */,
+				382AF42C1E30D961002B33B7 /* AboutViewController.swift in Sources */,
 				38607B141E2649A6007D05C8 /* UIDevice.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
