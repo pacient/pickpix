@@ -55,7 +55,9 @@ class WallpaperViewController: UIViewController {
     }
     
     func currentImage() {
-        UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)), nil)
+        if self.imageView.image != #imageLiteral(resourceName: "placeholder-1"){
+            UIImageWriteToSavedPhotosAlbum(self.imageView.image!, self, #selector(imageSaved(image:didFinishSavingWithError:contextInfo:)), nil)
+        }
     }
 
     func imageSaved(image: UIImage, didFinishSavingWithError: NSError?, contextInfo: CGContext?){
