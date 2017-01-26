@@ -22,7 +22,8 @@ class AboutViewController: UIViewController, MFMailComposeViewControllerDelegate
     }
 
     @IBAction func aboutPressed(_ sender: Any) {
-        
+        let vc = UIStoryboard(name: "Menu", bundle: nil).instantiateViewController(withIdentifier: "about")
+        self.present(vc, animated: true, completion: nil)
     }
     
     @IBAction func suggestionPressed(_ sender: Any) {
