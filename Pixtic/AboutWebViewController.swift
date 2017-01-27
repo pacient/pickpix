@@ -21,5 +21,8 @@ class AboutWebViewController: UIViewController {
         webview.loadHTMLString(html!, baseURL: nil)
     }
 
+    @IBAction func donePressed(_ sender: Any) {
+        self.dismiss(animated: true, completion: nil)
+    }
 
 }
