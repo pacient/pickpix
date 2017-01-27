@@ -162,16 +162,22 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yfL-Vm-18f">
                                                     <rect key="frame" x="0.0" y="0.0" width="124" height="150"/>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="qMF-Qm-cfP">
+                                                    <rect key="frame" x="44" y="57" width="37" height="37"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="yfL-Vm-18f" secondAttribute="trailing" id="2ZN-ZG-Lg5"/>
+                                            <constraint firstItem="qMF-Qm-cfP" firstAttribute="centerX" secondItem="HN4-hf-GZg" secondAttribute="centerX" id="L3Y-gf-R4R"/>
+                                            <constraint firstItem="qMF-Qm-cfP" firstAttribute="centerY" secondItem="HN4-hf-GZg" secondAttribute="centerY" id="OlO-gd-4U7"/>
                                             <constraint firstItem="yfL-Vm-18f" firstAttribute="leading" secondItem="HN4-hf-GZg" secondAttribute="leading" id="fft-uG-w7P"/>
                                             <constraint firstAttribute="bottom" secondItem="yfL-Vm-18f" secondAttribute="bottom" id="rjR-HH-PGT"/>
                                             <constraint firstItem="yfL-Vm-18f" firstAttribute="top" secondItem="HN4-hf-GZg" secondAttribute="top" id="x0q-06-Hoj"/>
                                         </constraints>
                                         <size key="customSize" width="124" height="150"/>
                                         <connections>
+                                            <outlet property="activityInd" destination="qMF-Qm-cfP" id="jOh-Sx-cZ8"/>
                                             <outlet property="wallpaperImage" destination="yfL-Vm-18f" id="o52-Eh-nPU"/>
                                         </connections>
                                     </collectionViewCell>

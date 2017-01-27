@@ -62,15 +62,21 @@
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="eqx-nB-ig8">
                                                     <rect key="frame" x="0.0" y="0.0" width="110" height="146"/>
                                                 </imageView>
+                                                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="jdz-cW-jEY">
+                                                    <rect key="frame" x="37" y="55" width="37" height="37"/>
+                                                </activityIndicatorView>
                                             </subviews>
                                         </view>
                                         <constraints>
+                                            <constraint firstItem="jdz-cW-jEY" firstAttribute="centerY" secondItem="Z8u-Ot-PmU" secondAttribute="centerY" id="Giy-HA-79L"/>
                                             <constraint firstAttribute="bottom" secondItem="eqx-nB-ig8" secondAttribute="bottom" id="Ow3-0b-wNL"/>
                                             <constraint firstItem="eqx-nB-ig8" firstAttribute="leading" secondItem="Z8u-Ot-PmU" secondAttribute="leading" id="eB4-02-tOn"/>
                                             <constraint firstAttribute="trailing" secondItem="eqx-nB-ig8" secondAttribute="trailing" id="ncu-2E-giW"/>
+                                            <constraint firstItem="jdz-cW-jEY" firstAttribute="centerX" secondItem="Z8u-Ot-PmU" secondAttribute="centerX" id="rKg-Mn-lOw"/>
                                             <constraint firstItem="eqx-nB-ig8" firstAttribute="top" secondItem="Z8u-Ot-PmU" secondAttribute="top" id="sTu-r5-P2W"/>
                                         </constraints>
                                         <connections>
+                                            <outlet property="activityInd" destination="jdz-cW-jEY" id="otj-rS-nI7"/>
                                             <outlet property="wallpaperImage" destination="eqx-nB-ig8" id="0kg-0D-0cp"/>
                                         </connections>
                                     </collectionViewCell>

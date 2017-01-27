@@ -45,10 +45,13 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! WallpaperCell
-        
+        cell.activityInd.color = Color.black
         let resource = ImageResource(downloadURL: URL(string: (self.images?[indexPath.item].imageURL)!)!, cacheKey: self.images?[indexPath.item].photoID)
-        cell.wallpaperImage.kf.setImage(with: resource, placeholder: nil, options: [], progressBlock: nil, completionHandler: nil)
-        
+        cell.wallpaperImage.kf.setImage(with: resource, placeholder: nil, options: [], progressBlock: nil) { (image, error, _, _) in
+            if image != nil {
+                cell.activityInd.stopAnimating()
+            }
+        }
         return cell
     }
     
@@ -61,6 +64,9 @@ class CollectionViewController: UIViewController, UICollectionViewDelegate, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if self.view.frame.width <= 320 || self.view.frame.width == 414{
+            return CGSize(width: (self.view.frame.width/3)-1, height: 150)
+        }
         return CGSize(width: 124, height: 150)
     }
     

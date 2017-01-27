@@ -10,5 +10,6 @@ import UIKit
 
 class WallpaperCell: UICollectionViewCell {
     
+    @IBOutlet weak var activityInd: UIActivityIndicatorView!
     @IBOutlet weak var wallpaperImage: UIImageView!
 }
