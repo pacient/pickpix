@@ -20,6 +20,7 @@
 		387E8ABD1E2FB3D90023DF99 /* NoInternetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 387E8ABC1E2FB3D90023DF99 /* NoInternetViewController.swift */; };
 		38DDA9961E3A64B6008E9171 /* AboutWebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38DDA9951E3A64B6008E9171 /* AboutWebViewController.swift */; };
 		38DDA9981E3A66C0008E9171 /* about.html in Resources */ = {isa = PBXBuildFile; fileRef = 38DDA9971E3A66C0008E9171 /* about.html */; };
+		38E32F381E3B87CC00B55CC0 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38E32F371E3B87CC00B55CC0 /* SplashScreen.storyboard */; };
 		38FEF69E1E1EF95000727681 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEF69D1E1EF95000727681 /* AppDelegate.swift */; };
 		38FEF6A01E1EF95000727681 /* WallpaperViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */; };
 		38FEF6A31E1EF95000727681 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 38FEF6A11E1EF95000727681 /* Main.storyboard */; };
@@ -46,6 +47,7 @@
 		387E8ABC1E2FB3D90023DF99 /* NoInternetViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NoInternetViewController.swift; sourceTree = "<group>"; };
 		38DDA9951E3A64B6008E9171 /* AboutWebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AboutWebViewController.swift; sourceTree = "<group>"; };
 		38DDA9971E3A66C0008E9171 /* about.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = about.html; sourceTree = "<group>"; };
+		38E32F371E3B87CC00B55CC0 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SplashScreen.storyboard; sourceTree = "<group>"; };
 		38FEF69A1E1EF95000727681 /* Pixtic.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Pixtic.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		38FEF69D1E1EF95000727681 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		38FEF69F1E1EF95000727681 /* WallpaperViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallpaperViewController.swift; sourceTree = "<group>"; };
@@ -118,6 +120,7 @@
 				3845306F1E22B2620036C4FC /* Menu.storyboard */,
 				38FEF6A11E1EF95000727681 /* Main.storyboard */,
 				38FEF6A61E1EF95000727681 /* LaunchScreen.storyboard */,
+				38E32F371E3B87CC00B55CC0 /* SplashScreen.storyboard */,
 			);
 			name = Storyboards;
 			sourceTree = "<group>";
@@ -248,6 +251,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				384530701E22B2620036C4FC /* Menu.storyboard in Resources */,
+				38E32F381E3B87CC00B55CC0 /* SplashScreen.storyboard in Resources */,
 				38FEF6A81E1EF95000727681 /* LaunchScreen.storyboard in Resources */,
 				38FEF6A51E1EF95000727681 /* Assets.xcassets in Resources */,
 				38607B111E25733E007D05C8 /* Header.xib in Resources */,
