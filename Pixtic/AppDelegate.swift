@@ -47,7 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func getWallpapersFromDatabase() {
         if isInternetAvailable(){
             ref.child("iphone6").queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
-                
                 if let categories = snapshot.value as? [String : AnyObject] {
                     self.images = [Photo]()
                     for (_, wallpapers) in categories{
@@ -77,18 +76,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             })
             ref.removeAllObservers()
-        }else{
-            //NotificationCenter.default.post(name: NSNotification.Name(rawValue: "noInternet"), object: nil)
-            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "noIntVC")
-            self.window?.rootViewController = vc
         }
     }
     
     func getWallpapers(from categoryName: String){
-        if isInternetAvailable(){
-            if categoryName == "All" {
-                getWallpapersFromDatabase()
-            }else {
+        if categoryName == "All" {
+            getWallpapersFromDatabase()
+        }else {
+            if isInternetAvailable(){
                 ref.child("iphone6").child(categoryName).queryOrderedByKey().observeSingleEvent(of: .value, with: { (snapshot) in
                     if let wallpapers = snapshot.value as? [String : AnyObject] {
                         self.images = [Photo]()
@@ -114,12 +109,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 })
                 ref.removeAllObservers()
             }
-        }else{
-            let alert = UIAlertController(title: "No Internet", message: "You don't have internet connection. Please Check your internet connection and try again", preferredStyle: .alert)
-            let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
-            alert.addAction(action)
-            
-            self.window!.rootViewController!.present(alert, animated: true, completion: nil)
         }
     }
     

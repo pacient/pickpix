@@ -72,7 +72,15 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         AppDelegate.instance().getWallpapers(from: self.categories![indexPath.row].name)
         UIApplication.shared.setStatusBarHidden(true, with: .slide)
-        self.dismiss(animated: true, completion: nil)
+        self.dismiss(animated: true, completion: {
+            if !isInternetAvailable() {
+                let vc = UIAlertController(title: "No internet", message: "Please check your connection and try again.", preferredStyle: .alert)
+                let action = UIAlertAction(title: "Ok", style: .default, handler: nil)
+                vc.addAction(action)
+                AppDelegate.instance().window?.rootViewController?.present(vc, animated: true, completion: nil)
+                AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
+            }
+        })
     }
     
     //MARK: GET request calls
