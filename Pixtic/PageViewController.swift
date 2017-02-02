@@ -23,6 +23,8 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     var previousCounter = 0
     var nextCounter = 0
     
+    var reminder = 0
+    
     var isFavourite: Bool = false
     
     override func viewDidLoad() {
@@ -30,6 +32,10 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
         
         view.backgroundColor = UIColor.black
         dataSource = self
+        
+        if let num = UserDefaults.standard.value(forKey: "reminder") as? Int{
+            reminder = num
+        }
         
         let bannerView = AppDelegate.instance().bannerAd
         bannerView.adUnitID = bannerLiveAdID
@@ -147,10 +153,24 @@ class PageViewController: UIPageViewController, UIPageViewControllerDataSource, 
     func interstitialDidDismissScreen(_ ad: GADInterstitial) {
         interstitial = createAndLoadInterstitial()
         AppDelegate.instance().showButtons(show: true, moveBannerAd: true)
+        UserDefaults.standard.set(reminder+1, forKey: "reminder")
+        reminder = UserDefaults.standard.value(forKey: "reminder") as! Int
+        if reminder == 2 || reminder % 6 == 0 {
+            let alertvc = UIAlertController(title: "Remove Ads", message: "You can remove those annoying ads from our in-app purchase once and for all.", preferredStyle: .alert)
+            let purchAction = UIAlertAction(title: "Remove Ads", style: .default, handler: { (action) in
+                print("purchase the in-app")
+            })
+            let cancle = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+            
+            alertvc.addAction(cancle)
+            alertvc.addAction(purchAction)
+
+            self.present(alertvc, animated: true, completion: nil)
+        }
     }
     
     func createAndLoadInterstitial() -> GADInterstitial {
-        let interstitial = GADInterstitial(adUnitID: interstitialTestAdID)
+        let interstitial = GADInterstitial(adUnitID: interstitialLiveAdID)
         interstitial.delegate = self
         interstitial.load(GADRequest())
         return interstitial
