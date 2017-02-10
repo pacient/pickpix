@@ -100,15 +100,14 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
                         category.iconURL = value["icon"] as! String
                         self.categories?.append(category)
                     }
-                    let category = Category()
-                    category.name = "All"
-                    category.imagesCount = totalCount
-                    category.iconURL = "https://firebasestorage.googleapis.com/v0/b/pixtic-bb2a2.appspot.com/o/category%20icons%2FHiAppHere_com_kov.theme.lumos.png?alt=media&token=7f036abb-92d4-4153-94e7-2475d35c9a97"
-                    self.categories?.append(category)
                 }
-                
+                let category = Category()
+                category.name = "All"
+                category.imagesCount = totalCount
+                category.iconURL = "https://firebasestorage.googleapis.com/v0/b/pixtic-bb2a2.appspot.com/o/category%20icons%2FHiAppHere_com_kov.theme.lumos.png?alt=media&token=7f036abb-92d4-4153-94e7-2475d35c9a97"
                 let sorted = self.categories?.sorted { $0.name < $1.name }
                 self.categories = sorted
+                self.categories?.insert(category, at: 0)
                 self.tableview.reloadData()
                 self.actView.isHidden = true
             })
